@@ -252,7 +252,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
                   {/* Left Column Links */}
                   <div className="col-span-6 space-y-1">
                     <Link
-                      href="/resources#blog"
+                      href="/blog"
                       className="flex items-center gap-3 p-2 rounded-xl hover:bg-[#0E7C86]/20 text-slate-300 hover:text-white transition-colors group"
                     >
                       <BookOpen className="w-4 h-4 text-[#2CCFD3] group-hover:scale-110 transition-transform" />
@@ -260,7 +260,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
                     </Link>
 
                     <Link
-                      href="/portfolio"
+                      href="/case-studies"
                       className="flex items-center gap-3 p-2 rounded-xl hover:bg-[#0E7C86]/20 text-slate-300 hover:text-white transition-colors group"
                     >
                       <FileText className="w-4 h-4 text-[#2CCFD3] group-hover:scale-110 transition-transform" />

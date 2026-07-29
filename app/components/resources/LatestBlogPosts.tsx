@@ -105,7 +105,7 @@ export default function LatestBlogPosts() {
 
               <div className="p-5 pt-0">
                 <Link
-                  href="/resources"
+                  href="/blog"
                   className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E7C86] group-hover:underline"
                 >
                   <span>Read Article</span>

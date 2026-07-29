@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 
 export default function CategoryFilterGrid() {
@@ -132,7 +133,8 @@ export default function CategoryFilterGrid() {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {filteredProjects.map((project) => (
-            <div
+            <Link
+              href="/case-studies"
               key={project.id}
               className="bg-white border border-slate-200 rounded-3xl overflow-hidden group hover:border-[#0E7C86] hover:shadow-xl transition-all shadow-sm flex flex-col justify-between"
             >
@@ -176,7 +178,7 @@ export default function CategoryFilterGrid() {
                   ))}
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

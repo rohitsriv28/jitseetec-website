@@ -197,7 +197,7 @@ export default function Footer() {
               <ul className="space-y-2.5 text-xs font-medium">
                 <li>
                   <Link
-                    href="/resources#blog"
+                    href="/blog"
                     className="hover:text-[#2CCFD3] transition-colors"
                   >
                     Blog
@@ -205,7 +205,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="/portfolio"
+                    href="/case-studies"
                     className="hover:text-[#2CCFD3] transition-colors"
                   >
                     Case Studies

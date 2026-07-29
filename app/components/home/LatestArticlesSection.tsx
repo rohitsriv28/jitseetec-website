@@ -165,7 +165,7 @@ export default function LatestArticlesSection() {
                   <div className="flex items-center justify-between text-xs text-slate-500 pt-2 border-t border-slate-200">
                     <span>{article.readTime}</span>
                     <Link
-                      href="/resources"
+                      href="/blog"
                       className="text-[#0E7C86] font-bold group-hover:underline flex items-center gap-1"
                     >
                       Read More

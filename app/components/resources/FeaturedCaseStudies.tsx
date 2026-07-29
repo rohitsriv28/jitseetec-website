@@ -108,7 +108,7 @@ export default function FeaturedCaseStudies() {
 
               <div className="p-6 pt-0">
                 <Link
-                  href="/portfolio"
+                  href="/case-studies"
                   className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E7C86] group-hover:underline"
                 >
                   <span>Read Full Case Study</span>
