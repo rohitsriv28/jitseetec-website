@@ -42,7 +42,9 @@ export default function ContactPage() {
         </section>
 
         {/* Contact CTA */}
-        <ContactCtaSection onOpenConsultation={() => setConsultationOpen(true)} />
+        <ContactCtaSection
+          onOpenConsultation={() => setConsultationOpen(true)}
+        />
       </main>
 
       {/* Footer */}

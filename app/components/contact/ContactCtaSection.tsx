@@ -7,7 +7,9 @@ interface ContactCtaSectionProps {
   onOpenConsultation: () => void;
 }
 
-export default function ContactCtaSection({ onOpenConsultation }: ContactCtaSectionProps) {
+export default function ContactCtaSection({
+  onOpenConsultation,
+}: ContactCtaSectionProps) {
   return (
     <section className="py-16 bg-white text-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

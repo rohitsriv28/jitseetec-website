@@ -14,7 +14,7 @@ export default function StatsCounterBar() {
               <Rocket className="w-5 h-5" />
             </div>
             <div className="text-3xl sm:text-4xl font-extrabold font-heading text-[#0B1623]">
-              50+
+              14+
             </div>
             <div className="text-xs text-slate-600 mt-1 font-medium">
               Projects Delivered

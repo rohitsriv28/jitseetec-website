@@ -9,7 +9,9 @@ interface PortfolioHeroProps {
   onOpenConsultation: () => void;
 }
 
-export default function PortfolioHero({ onOpenConsultation }: PortfolioHeroProps) {
+export default function PortfolioHero({
+  onOpenConsultation,
+}: PortfolioHeroProps) {
   return (
     <section className="relative overflow-hidden pt-8 pb-14 sm:pt-10 sm:pb-16 lg:pt-12 lg:pb-16 bg-[#0B1623] bg-grid-pattern">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

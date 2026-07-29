@@ -299,7 +299,9 @@ export default function ContactFormSection() {
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-[#0B1623]">Phone</div>
+                    <div className="text-xs font-bold text-[#0B1623]">
+                      Phone
+                    </div>
                     <a
                       href="tel:+9779811195091"
                       className="text-xs text-slate-600 hover:text-[#0E7C86] mt-0.5 block font-medium"
@@ -315,7 +317,9 @@ export default function ContactFormSection() {
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-[#0B1623]">Email</div>
+                    <div className="text-xs font-bold text-[#0B1623]">
+                      Email
+                    </div>
                     <a
                       href="mailto:hello@jitseetec.com"
                       className="text-xs text-slate-600 hover:text-[#0E7C86] mt-0.5 block font-medium"

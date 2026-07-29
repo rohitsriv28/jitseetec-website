@@ -7,7 +7,9 @@ interface ResourcesCtaProps {
   onOpenConsultation: () => void;
 }
 
-export default function ResourcesCta({ onOpenConsultation }: ResourcesCtaProps) {
+export default function ResourcesCta({
+  onOpenConsultation,
+}: ResourcesCtaProps) {
   return (
     <section className="py-16 bg-white text-slate-900 border-t border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

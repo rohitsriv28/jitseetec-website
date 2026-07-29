@@ -28,9 +28,9 @@ export default function ContactHero() {
             </h1>
 
             <p className="text-base sm:text-lg text-slate-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              Have a project in mind or need expert advice? We&apos;d love to hear
-              from you. Fill out the form or reach out using any of the options
-              below.
+              Have a project in mind or need expert advice? We&apos;d love to
+              hear from you. Fill out the form or reach out using any of the
+              options below.
             </p>
 
             {/* 3 Key Badges */}
@@ -80,7 +80,7 @@ export default function ContactHero() {
           </div>
 
           {/* Right Column Image */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+          <div className="lg:col-span-5 hidden lg:flex justify-center lg:justify-end">
             <Image
               src="/images/contact_hero_3d.png"
               alt="Contact 3D Digital Envelope Graphic"

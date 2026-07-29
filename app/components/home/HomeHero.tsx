@@ -25,16 +25,14 @@ export default function HomeHero({ onOpenConsultation }: HomeHeroProps) {
             {/* Main Heading */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading tracking-tight leading-[1.15] text-white">
               Unlocking Strategic Digital{" "}
-              <span className="text-[#2CCFD3] inline-block">
-                Acceleration.
-              </span>
+              <span className="text-[#2CCFD3] inline-block">Acceleration.</span>
             </h1>
 
             {/* Subtitle */}
             <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              We design and build modern, scalable and high-performance
-              digital solutions that help startups, SMEs and enterprises
-              transform ideas into impactful products.
+              We design and build modern, scalable and high-performance digital
+              solutions that help startups, SMEs and enterprises transform ideas
+              into impactful products.
             </p>
 
             {/* Action CTAs */}

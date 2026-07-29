@@ -40,7 +40,7 @@ export default function MilestonesTimeline() {
   return (
     <section className="py-20 bg-[#EEF4F8] text-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-16">
+        <div className="mb-16 text-center sm:text-left">
           <span className="text-[#0E7C86] text-xs font-bold tracking-wider uppercase font-heading">
             OUR JOURNEY
           </span>
@@ -50,29 +50,31 @@ export default function MilestonesTimeline() {
         </div>
 
         <div className="relative">
-          {/* Dashed connector line */}
-          <div className="hidden lg:block absolute top-10 left-12 right-12 h-0.5 border-t-2 border-dashed border-slate-300 -z-0" />
+          {/* Dashed connector line connecting all icon nodes */}
+          <div className="hidden lg:block absolute top-7 left-[10%] right-[10%] h-0.5 border-t-2 border-dashed border-slate-300 z-0" />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 relative z-10">
             {milestones.map((m, i) => {
               const IconComp = m.icon;
               return (
-                <div
-                  key={i}
-                  className="bg-[#F7F9FB] border border-slate-200 rounded-2xl p-5 text-center hover:border-[#0E7C86] transition-colors shadow-sm"
-                >
-                  <div className="w-12 h-12 rounded-full bg-white text-[#0E7C86] border border-slate-200 flex items-center justify-center mx-auto mb-3 shadow-md">
-                    <IconComp className="w-5 h-5" />
+                <div key={i} className="group flex flex-col items-center">
+                  {/* Icon Circle Node - Above Card */}
+                  <div className="w-14 h-14 rounded-full bg-white text-[#0E7C86] border-2 border-slate-200 flex items-center justify-center mb-6 shadow-md z-10 transition-all duration-300 group-hover:bg-[#0E7C86] group-hover:text-white group-hover:border-[#2CCFD3] group-hover:scale-105 group-hover:shadow-[0_0_12px_rgba(44,207,211,0.35)]">
+                    <IconComp className="w-6 h-6 transition-transform duration-300 group-hover:scale-110" />
                   </div>
-                  <div className="text-xs font-bold text-[#0E7C86] font-mono mb-1">
-                    {m.year}
+
+                  {/* Milestone Content Card */}
+                  <div className="w-full bg-[#F7F9FB] border border-slate-200 rounded-2xl p-5 text-center transition-all duration-300 shadow-sm group-hover:border-[#0E7C86] group-hover:shadow-lg group-hover:-translate-y-1 flex-1">
+                    <div className="text-xs font-bold text-[#0E7C86] font-mono mb-1">
+                      {m.year}
+                    </div>
+                    <h3 className="text-sm font-bold font-heading text-[#0B1623] mb-2">
+                      {m.title}
+                    </h3>
+                    <p className="text-[11px] text-slate-600 leading-relaxed">
+                      {m.desc}
+                    </p>
                   </div>
-                  <h3 className="text-sm font-bold font-heading text-[#0B1623] mb-2">
-                    {m.title}
-                  </h3>
-                  <p className="text-[11px] text-slate-600 leading-relaxed">
-                    {m.desc}
-                  </p>
                 </div>
               );
             })}

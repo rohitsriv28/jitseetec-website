@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import {
   Globe,
   Users,
@@ -12,7 +13,7 @@ import {
 } from "lucide-react";
 
 interface AboutCtaProps {
-  onOpenConsultation: () => void;
+  onOpenConsultation?: () => void;
 }
 
 export default function AboutCta({ onOpenConsultation }: AboutCtaProps) {
@@ -34,16 +35,17 @@ export default function AboutCta({ onOpenConsultation }: AboutCtaProps) {
               </h2>
               <p className="text-sm text-slate-300 leading-relaxed">
                 We believe great work happens when people feel trusted,
-                supported, and empowered to do their best work—wherever they are.
+                supported, and empowered to do their best work—wherever they
+                are.
               </p>
               <div className="pt-2">
-                <button
-                  onClick={onOpenConsultation}
+                <Link
+                  href="/about#team"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#0E7C86] hover:bg-[#2CCFD3] hover:text-[#0B1623] text-white font-bold text-xs transition-all shadow-lg"
                 >
                   <span>Life at JitSeeTec</span>
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -151,13 +153,13 @@ export default function AboutCta({ onOpenConsultation }: AboutCtaProps) {
               </p>
             </div>
 
-            <button
-              onClick={onOpenConsultation}
+            <a
+              href="mailto:hello@jitseetec.com?subject=Career%20Inquiry%20-%20JitSeeTec"
               className="shrink-0 px-8 py-3.5 bg-[#0E7C86] hover:bg-[#0B6871] text-white font-bold text-xs rounded-xl transition-all shadow-md flex items-center gap-2"
             >
               <span>View Open Positions</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </a>
           </div>
         </div>
       </section>

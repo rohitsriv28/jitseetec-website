@@ -4,15 +4,46 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { FaLinkedin } from "react-icons/fa";
 
 export default function LeadershipTeam() {
   const team = [
-    { name: "Aayush Gupta", role: "Project Manager", initials: "AG" },
-    { name: "Mandip Shah", role: "Senior Developer", initials: "MS" },
-    { name: "Rohit Srivastava", role: "UI/UX Designer", initials: "RS" },
-    { name: "Deepak Karn", role: "DevOps Engineer", initials: "DK" },
-    { name: "Prakash Kushwaha", role: "QA Engineer", initials: "PK" },
-    { name: "ChhupaRustam Kushwaha", role: "Business Analyst", initials: "CRK" },
+    {
+      name: "Aayush Gupta",
+      role: "Project Manager",
+      initials: "AG",
+      linkedin: "https://www.linkedin.com/in/ayush-gupta-5ba1ba220/",
+    },
+    {
+      name: "Mandip Shah",
+      role: "Senior Developer",
+      initials: "MS",
+      linkedin: "https://www.linkedin.com/in/mandip-kanu-589790168/",
+    },
+    {
+      name: "Rohit Srivastava",
+      role: "UI/UX Designer & Frontend Developer",
+      initials: "RS",
+      linkedin: "https://www.linkedin.com/in/rohitsriv28/",
+    },
+    {
+      name: "Deepak Karn",
+      role: "DevOps Engineer",
+      initials: "DK",
+      linkedin: "https://www.linkedin.com/in/dipak-karn-b760202b7/",
+    },
+    {
+      name: "Prakash Kushwaha",
+      role: "QA Engineer",
+      initials: "PK",
+      linkedin: "https://www.linkedin.com/in/prakash-kushwaha-b97809325/",
+    },
+    {
+      name: "ChhupaRustam Kushwaha",
+      role: "Business Analyst",
+      initials: "CRK",
+      linkedin: "https://www.linkedin.com/in/chhuparustam-kushwaha/",
+    },
   ];
 
   return (
@@ -39,12 +70,12 @@ export default function LeadershipTeam() {
 
           {/* 2 Leadership Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* Leader 1: Ronit Kumar */}
+            {/* Leader 1: Aayush Gupta */}
             <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-6 shadow-sm hover:shadow-md transition-all">
               <div className="relative w-36 h-44 rounded-2xl overflow-hidden shrink-0 border border-slate-200 shadow-md">
                 <Image
-                  src="/images/leader_ronit.png"
-                  alt="Ronit Kumar - Co-Founder & CEO"
+                  src="/images/leader_aayush.png"
+                  alt="Aayush Gupta - Co-Founder & CEO"
                   fill
                   sizes="144px"
                   className="object-cover"
@@ -55,40 +86,38 @@ export default function LeadershipTeam() {
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-xl font-bold font-heading text-[#0B1623]">
-                      Ronit Kumar
+                      Aayush Gupta
                     </h3>
                     <div className="text-xs font-bold text-[#0E7C86] mt-0.5">
                       Co-Founder & CEO
                     </div>
                   </div>
                   <a
-                    href="https://linkedin.com"
+                    href="https://www.linkedin.com/in/ayush-gupta-5ba1ba220/"
                     target="_blank"
                     rel="noreferrer"
                     className="w-8 h-8 rounded-lg bg-slate-100 text-slate-700 hover:bg-[#0E7C86] hover:text-white flex items-center justify-center transition-colors"
                   >
-                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.7a1.63 1.63 0 1 0 0 3.26 1.63 1.63 0 0 0 0-3.26Z" />
-                    </svg>
+                    <FaLinkedin className="w-4 h-4" />
                   </a>
                 </div>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  Visionary leader with a passion for building products and teams
-                  that create lasting impact. Ronit drives strategy, innovation,
-                  and client success at JitSeeTec.
+                  Visionary leader with a passion for building products and
+                  teams that create lasting impact. Aayush drives strategy,
+                  innovation, and client success at JitSeeTec.
                 </p>
                 <div className="text-base font-serif italic text-slate-400 font-bold pt-2">
-                  Ronit Kumar
+                  Aayush Gupta
                 </div>
               </div>
             </div>
 
-            {/* Leader 2: Abhishek Kumar */}
+            {/* Leader 2: Mandip Shah */}
             <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-6 shadow-sm hover:shadow-md transition-all">
               <div className="relative w-36 h-44 rounded-2xl overflow-hidden shrink-0 border border-slate-200 shadow-md">
                 <Image
-                  src="/images/leader_abhishek.png"
-                  alt="Abhishek Kumar - Co-Founder & CTO"
+                  src="/images/leader_mandip.png"
+                  alt="Mandip Shah - Co-Founder & CTO"
                   fill
                   sizes="144px"
                   className="object-cover"
@@ -99,21 +128,19 @@ export default function LeadershipTeam() {
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-xl font-bold font-heading text-[#0B1623]">
-                      Abhishek Kumar
+                      Mandip Shah
                     </h3>
                     <div className="text-xs font-bold text-[#0E7C86] mt-0.5">
                       Co-Founder & CTO
                     </div>
                   </div>
                   <a
-                    href="https://linkedin.com"
+                    href="https://www.linkedin.com/in/mandip-kanu-589790168/"
                     target="_blank"
                     rel="noreferrer"
                     className="w-8 h-8 rounded-lg bg-slate-100 text-slate-700 hover:bg-[#0E7C86] hover:text-white flex items-center justify-center transition-colors"
                   >
-                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.7a1.63 1.63 0 1 0 0 3.26 1.63 1.63 0 0 0 0-3.26Z" />
-                    </svg>
+                    <FaLinkedin className="w-4 h-4" />
                   </a>
                 </div>
                 <p className="text-xs text-slate-600 leading-relaxed">
@@ -122,7 +149,7 @@ export default function LeadershipTeam() {
                   high-quality software solutions.
                 </p>
                 <div className="text-base font-serif italic text-slate-400 font-bold pt-2">
-                  Abhishek Kumar
+                  Mandip Shah
                 </div>
               </div>
             </div>
@@ -168,14 +195,12 @@ export default function LeadershipTeam() {
                   {member.role}
                 </div>
                 <a
-                  href="https://linkedin.com"
+                  href={member.linkedin}
                   target="_blank"
                   rel="noreferrer"
                   className="absolute top-3 right-3 w-6 h-6 rounded-full bg-white text-slate-500 hover:text-[#0E7C86] flex items-center justify-center shadow-sm opacity-0 group-hover:opacity-100 transition-opacity"
                 >
-                  <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
-                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.7a1.63 1.63 0 1 0 0 3.26 1.63 1.63 0 0 0 0-3.26Z" />
-                  </svg>
+                  <FaLinkedin className="w-3.5 h-3.5" />
                 </a>
               </div>
             ))}

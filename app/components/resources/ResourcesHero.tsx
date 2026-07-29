@@ -70,7 +70,7 @@ export default function ResourcesHero() {
           </div>
 
           {/* Right Column Image */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+          <div className="lg:col-span-5 hidden lg:flex justify-center lg:justify-end">
             <Image
               src="/images/resources_hero_3d.png"
               alt="Resources Hub 3D Tech Graphic"

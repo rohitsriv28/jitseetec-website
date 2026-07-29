@@ -9,7 +9,9 @@ interface ServicesHeroProps {
   onOpenConsultation: () => void;
 }
 
-export default function ServicesHero({ onOpenConsultation }: ServicesHeroProps) {
+export default function ServicesHero({
+  onOpenConsultation,
+}: ServicesHeroProps) {
   return (
     <section className="relative overflow-hidden pt-8 pb-14 sm:pt-10 sm:pb-16 lg:pt-12 lg:pb-16 bg-[#0B1623] bg-grid-pattern">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -57,7 +59,7 @@ export default function ServicesHero({ onOpenConsultation }: ServicesHeroProps) 
           </div>
 
           {/* Right Column Image */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+          <div className="lg:col-span-5 hidden lg:flex justify-center lg:justify-end">
             <Image
               src="/images/services_hero_3d.png"
               alt="Services 3D Tech Illustration"

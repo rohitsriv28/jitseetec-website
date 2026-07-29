@@ -17,7 +17,9 @@ interface ServiceCardsProps {
   onOpenConsultation: () => void;
 }
 
-export default function ServiceCards({ onOpenConsultation }: ServiceCardsProps) {
+export default function ServiceCards({
+  onOpenConsultation,
+}: ServiceCardsProps) {
   return (
     <section className="py-20 bg-white text-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -276,8 +278,8 @@ export default function ServiceCards({ onOpenConsultation }: ServiceCardsProps) 
                 API Development
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed mb-6">
-                Secure, well-documented and high-performance APIs to connect your
-                applications and third-party services.
+                Secure, well-documented and high-performance APIs to connect
+                your applications and third-party services.
               </p>
 
               <div className="relative h-44 rounded-2xl overflow-hidden mb-6 bg-[#0B1623] p-4 font-mono text-[11px] text-[#2CCFD3] border border-slate-800 flex items-center justify-center">

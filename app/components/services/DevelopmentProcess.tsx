@@ -1,7 +1,14 @@
 "use client";
 
 import React from "react";
-import { Search, FileText, Edit3, Code2, Rocket, Headphones } from "lucide-react";
+import {
+  Search,
+  FileText,
+  Edit3,
+  Code2,
+  Rocket,
+  Headphones,
+} from "lucide-react";
 
 export default function DevelopmentProcess() {
   const steps = [
@@ -46,7 +53,7 @@ export default function DevelopmentProcess() {
   return (
     <section className="py-20 bg-[#EEF4F8] text-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-16">
+        <div className="mb-16 text-center sm:text-left">
           <span className="text-[#0E7C86] text-xs font-bold tracking-wider uppercase font-heading">
             OUR PROCESS
           </span>
@@ -68,20 +75,24 @@ export default function DevelopmentProcess() {
               return (
                 <div
                   key={idx}
-                  className="bg-slate-50 border border-slate-200 rounded-2xl p-5 text-center hover:border-[#0E7C86] transition-colors shadow-sm"
+                  className="group bg-[#F7F9FB] border border-slate-200 rounded-2xl p-5 text-center transition-all duration-300 shadow-sm hover:border-[#0E7C86] hover:shadow-md hover:-translate-y-1 flex flex-col justify-between"
                 >
-                  <div className="w-12 h-12 rounded-full bg-white text-[#0E7C86] border border-slate-200 flex items-center justify-center mx-auto mb-3 shadow-md">
-                    <ProcessIcon className="w-5 h-5" />
+                  <div>
+                    {/* Icon Circle Inside Card with Subtle Glow */}
+                    <div className="w-12 h-12 rounded-full bg-white text-[#0E7C86] border border-slate-200 flex items-center justify-center mx-auto mb-3 shadow-sm transition-all duration-300 group-hover:bg-[#0E7C86] group-hover:text-white group-hover:border-[#2CCFD3] group-hover:shadow-[0_0_12px_rgba(44,207,211,0.35)]">
+                      <ProcessIcon className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
+                    </div>
+
+                    <div className="text-xs font-bold text-[#0E7C86] font-mono mb-1">
+                      {proc.step}
+                    </div>
+                    <h3 className="text-sm font-bold font-heading text-[#0B1623] mb-2">
+                      {proc.title}
+                    </h3>
+                    <p className="text-[11px] text-slate-600 leading-relaxed">
+                      {proc.desc}
+                    </p>
                   </div>
-                  <div className="text-xs font-bold text-[#0E7C86] font-mono mb-1">
-                    {proc.step}
-                  </div>
-                  <h3 className="text-sm font-bold font-heading text-[#0B1623] mb-2">
-                    {proc.title}
-                  </h3>
-                  <p className="text-[11px] text-slate-600 leading-relaxed">
-                    {proc.desc}
-                  </p>
                 </div>
               );
             })}

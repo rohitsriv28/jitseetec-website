@@ -59,7 +59,7 @@ export default function AboutHero() {
                 </div>
                 <div>
                   <div className="text-xl font-bold font-heading text-[#2CCFD3]">
-                    50+
+                    14+
                   </div>
                   <div className="text-[11px] text-slate-400 font-medium">
                     Projects Delivered
@@ -98,7 +98,7 @@ export default function AboutHero() {
           </div>
 
           {/* Right Column: Office Photo Mockup */}
-          <div className="lg:col-span-5 relative">
+          <div className="lg:col-span-5 relative hidden lg:block">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-700/80 group">
               <Image
                 src="/images/about_office_hero.png"
