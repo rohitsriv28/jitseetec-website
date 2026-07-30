@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Send, ArrowRight } from "lucide-react";
+import { subscribeToCmsUpdate } from "@/lib/cmsBus";
 
 interface ContactCtaSectionProps {
   onOpenConsultation: () => void;
@@ -10,6 +11,32 @@ interface ContactCtaSectionProps {
 export default function ContactCtaSection({
   onOpenConsultation,
 }: ContactCtaSectionProps) {
+  const [content, setContent] = useState<any>({
+    title: "Ready to Start Your Project?",
+    description: "Let's turn your ideas into powerful digital solutions.",
+    buttonLabel: "Book a Free Consultation",
+  });
+
+  const fetchContent = async () => {
+    try {
+      const res = await fetch("/api/content/contact_cta");
+      if (res.ok) {
+        const json = await res.json();
+        if (json.data) setContent(json.data);
+      }
+    } catch (e) {
+      // fallback
+    }
+  };
+
+  useEffect(() => {
+    fetchContent();
+    const unsubscribe = subscribeToCmsUpdate((key) => {
+      if (!key || key === "contact_cta") fetchContent();
+    });
+    return () => unsubscribe();
+  }, []);
+
   return (
     <section className="py-16 bg-white text-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -20,10 +47,10 @@ export default function ContactCtaSection({
             </div>
             <div className="space-y-1 text-left">
               <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-white">
-                Ready to Start Your Project?
+                {content.title || "Ready to Start Your Project?"}
               </h2>
               <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
-                Let&apos;s turn your ideas into powerful digital solutions.
+                {content.description}
               </p>
             </div>
           </div>
@@ -32,7 +59,7 @@ export default function ContactCtaSection({
             onClick={onOpenConsultation}
             className="z-10 shrink-0 px-8 py-3.5 bg-[#2CCFD3] hover:bg-[#0E7C86] hover:text-white text-[#0B1623] font-bold text-xs rounded-xl transition-all shadow-xl flex items-center gap-2"
           >
-            <span>Book a Free Consultation</span>
+            <span>{content.buttonLabel || "Book a Free Consultation"}</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>

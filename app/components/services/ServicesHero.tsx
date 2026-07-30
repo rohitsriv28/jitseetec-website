@@ -1,9 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronRight, ArrowRight } from "lucide-react";
+import { fetchSectionContent } from "@/lib/apiClient";
+import { subscribeToCmsUpdate } from "@/lib/cmsBus";
 
 interface ServicesHeroProps {
   onOpenConsultation: () => void;
@@ -12,6 +14,46 @@ interface ServicesHeroProps {
 export default function ServicesHero({
   onOpenConsultation,
 }: ServicesHeroProps) {
+  const [heroData, setHeroData] = useState({
+    title: "Services That Drive Real Business Impact",
+    subtitle: "OUR SERVICES",
+    description:
+      "We design, build and scale digital solutions that help startups, SMEs and enterprises innovate faster, operate smarter and grow beyond limits.",
+    heroImage: "/images/services_hero_3d.png",
+  });
+
+  const loadHero = useCallback(() => {
+    fetchSectionContent("services_hero", heroData).then((data) => {
+      if (data && data.title) {
+        setHeroData(data);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    loadHero();
+    const unsub = subscribeToCmsUpdate((key) => {
+      if (!key || key === "services_hero" || key === "all") {
+        loadHero();
+      }
+    });
+    return unsub;
+  }, [loadHero]);
+
+  const renderHeading = (titleText: string) => {
+    if (titleText.includes("Business Impact")) {
+      const parts = titleText.split("Business Impact");
+      return (
+        <>
+          {parts[0]}
+          <span className="text-[#2CCFD3]">Business Impact</span>
+          {parts[1] || ""}
+        </>
+      );
+    }
+    return titleText;
+  };
+
   return (
     <section className="relative overflow-hidden pt-8 pb-14 sm:pt-10 sm:pb-16 lg:pt-12 lg:pb-16 bg-[#0B1623] bg-grid-pattern">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -28,15 +70,11 @@ export default function ServicesHero({
           {/* Left Column Text & CTAs */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading tracking-tight text-white leading-tight">
-              Services That Drive
-              <br />
-              Real <span className="text-[#2CCFD3]">Business Impact</span>
+              {renderHeading(heroData.title)}
             </h1>
 
             <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              We design, build and scale digital solutions that help startups,
-              SMEs and enterprises innovate faster, operate smarter and grow
-              beyond limits.
+              {heroData.description}
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
@@ -61,7 +99,7 @@ export default function ServicesHero({
           {/* Right Column Image */}
           <div className="lg:col-span-5 hidden lg:flex justify-center lg:justify-end">
             <Image
-              src="/images/services_hero_3d.png"
+              src={heroData.heroImage || "/images/services_hero_3d.png"}
               alt="Services 3D Tech Illustration"
               width={600}
               height={450}

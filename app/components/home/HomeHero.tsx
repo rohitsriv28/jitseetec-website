@@ -1,15 +1,57 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Sparkles, ArrowRight, Play } from "lucide-react";
+import { fetchSectionContent } from "@/lib/apiClient";
+import { subscribeToCmsUpdate } from "@/lib/cmsBus";
 
 interface HomeHeroProps {
   onOpenConsultation: () => void;
 }
 
 export default function HomeHero({ onOpenConsultation }: HomeHeroProps) {
+  const [heroData, setHeroData] = useState({
+    title: "Unlocking Strategic Digital Acceleration.",
+    subtitle: "SOFTWARE SOLUTIONS THAT DRIVE GROWTH",
+    description:
+      "We design and build modern, scalable and high-performance digital solutions that help startups, SMEs and enterprises transform ideas into impactful products.",
+    heroImage: "/images/hero_isometric_tech.png",
+  });
+
+  const loadHero = useCallback(() => {
+    fetchSectionContent("home_hero", heroData).then((data) => {
+      if (data && data.title) {
+        setHeroData(data);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    loadHero();
+    const unsub = subscribeToCmsUpdate((key) => {
+      if (!key || key === "home_hero" || key === "all") {
+        loadHero();
+      }
+    });
+    return unsub;
+  }, [loadHero]);
+
+  const renderHeading = (titleText: string) => {
+    if (titleText.includes("Acceleration.")) {
+      const parts = titleText.split("Acceleration.");
+      return (
+        <>
+          {parts[0]}
+          <span className="text-[#2CCFD3] inline-block">Acceleration.</span>
+          {parts[1] || ""}
+        </>
+      );
+    }
+    return titleText;
+  };
+
   return (
     <section className="relative overflow-hidden pt-8 pb-14 sm:pt-10 sm:pb-16 lg:pt-12 lg:pb-16 bg-[#0B1623] bg-grid-pattern">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -19,20 +61,17 @@ export default function HomeHero({ onOpenConsultation }: HomeHeroProps) {
             {/* Pill Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0E7C86]/15 border border-[#0E7C86]/40 text-[#2CCFD3] text-xs font-semibold tracking-wider uppercase">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>SOFTWARE SOLUTIONS THAT DRIVE GROWTH</span>
+              <span>{heroData.subtitle}</span>
             </div>
 
             {/* Main Heading */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading tracking-tight leading-[1.15] text-white">
-              Unlocking Strategic Digital{" "}
-              <span className="text-[#2CCFD3] inline-block">Acceleration.</span>
+              {renderHeading(heroData.title)}
             </h1>
 
-            {/* Subtitle */}
+            {/* Subtitle / Description */}
             <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              We design and build modern, scalable and high-performance digital
-              solutions that help startups, SMEs and enterprises transform ideas
-              into impactful products.
+              {heroData.description}
             </p>
 
             {/* Action CTAs */}
@@ -78,7 +117,7 @@ export default function HomeHero({ onOpenConsultation }: HomeHeroProps) {
           {/* Right Column: Hero Section Image */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
             <Image
-              src="/images/hero_isometric_tech.png"
+              src={heroData.heroImage || "/images/hero_isometric_tech.png"}
               alt="Digital Acceleration 3D Tech Illustration"
               width={600}
               height={450}

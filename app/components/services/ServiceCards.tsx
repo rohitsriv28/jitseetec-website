@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import {
   Code2,
@@ -12,6 +12,7 @@ import {
   CheckCircle2,
   ArrowRight,
 } from "lucide-react";
+import { subscribeToCmsUpdate } from "@/lib/cmsBus";
 
 interface ServiceCardsProps {
   onOpenConsultation: () => void;
@@ -20,6 +21,35 @@ interface ServiceCardsProps {
 export default function ServiceCards({
   onOpenConsultation,
 }: ServiceCardsProps) {
+  const [content, setContent] = useState<any>({
+    subtitle: "WHAT WE OFFER",
+    title: "End-to-End Digital Solutions Tailored to Your Needs",
+    description:
+      "From strategy and design to development and support, we offer a wide range of services to turn your ideas into powerful digital products.",
+  });
+
+  const fetchContent = async () => {
+    try {
+      const res = await fetch("/api/content/services_offerings");
+      if (res.ok) {
+        const json = await res.json();
+        if (json.data) setContent(json.data);
+      }
+    } catch (e) {
+      // fallback
+    }
+  };
+
+  useEffect(() => {
+    fetchContent();
+    const unsubscribe = subscribeToCmsUpdate((key) => {
+      if (!key || key === "services_offerings") {
+        fetchContent();
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
   return (
     <section className="py-20 bg-white text-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,19 +57,16 @@ export default function ServiceCards({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end mb-16">
           <div className="lg:col-span-7">
             <span className="text-[#0E7C86] text-xs font-bold tracking-wider uppercase font-heading">
-              WHAT WE OFFER
+              {content.subtitle || "WHAT WE OFFER"}
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-[#0B1623] mt-2">
-              End-to-End Digital Solutions
-              <br />
-              Tailored to Your Needs
+              {content.title || "End-to-End Digital Solutions Tailored to Your Needs"}
             </h2>
           </div>
           <div className="lg:col-span-5">
             <p className="text-slate-600 text-sm leading-relaxed">
-              From strategy and design to development and support, we offer a
-              wide range of services to turn your ideas into powerful digital
-              products.
+              {content.description ||
+                "From strategy and design to development and support, we offer a wide range of services to turn your ideas into powerful digital products."}
             </p>
           </div>
         </div>
@@ -169,8 +196,8 @@ export default function ServiceCards({
                 UI/UX Design
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed mb-6">
-                User-centered designs that are intuitive, engaging and aligned
-                with your brand and business goals.
+                User-centered interfaces designed for clarity, engagement and
+                exceptional visual appeal.
               </p>
 
               <div className="relative h-44 rounded-2xl overflow-hidden mb-6 bg-slate-100 border border-slate-200">
@@ -185,7 +212,7 @@ export default function ServiceCards({
 
               <ul className="space-y-2.5 mb-8">
                 {[
-                  "User Research & Analysis",
+                  "User Research & Testing",
                   "Wireframing & Prototyping",
                   "UI Design & Design Systems",
                 ].map((item, i) => (
@@ -224,24 +251,15 @@ export default function ServiceCards({
                 Cloud & DevOps
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed mb-6">
-                Scalable, secure and cost-optimized cloud solutions with robust
-                DevOps practices to ensure performance.
+                Cloud architecture, CI/CD automation and infrastructure
+                management for high availability.
               </p>
-
-              <div className="relative h-44 rounded-2xl overflow-hidden mb-6 bg-gradient-to-br from-[#0E7C86]/20 to-slate-100 flex items-center justify-center border border-slate-200">
-                <div className="text-center space-y-2">
-                  <Cloud className="w-12 h-12 text-[#0E7C86] mx-auto animate-pulse" />
-                  <div className="text-xs font-bold text-[#0B1623]">
-                    AWS / GCP / Azure Infrastructure
-                  </div>
-                </div>
-              </div>
 
               <ul className="space-y-2.5 mb-8">
                 {[
-                  "Cloud Migration",
-                  "CI/CD & Automation",
-                  "Monitoring & Infrastructure",
+                  "Cloud Infrastructure Setup",
+                  "CI/CD Pipeline Automation",
+                  "Cloud Migration & Security",
                 ].map((item, i) => (
                   <li
                     key={i}
@@ -265,9 +283,9 @@ export default function ServiceCards({
             </div>
           </div>
 
-          {/* Card 5: API Development */}
+          {/* Card 5: Custom Software */}
           <div
-            id="api-dev"
+            id="custom-software"
             className="bg-white border border-slate-200 rounded-3xl p-8 flex flex-col justify-between hover:border-[#0E7C86] hover:shadow-xl transition-all shadow-sm group"
           >
             <div>
@@ -275,28 +293,18 @@ export default function ServiceCards({
                 <Terminal className="w-6 h-6" />
               </div>
               <h3 className="text-xl font-bold font-heading text-[#0B1623] mb-3">
-                API Development
+                Custom Software
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed mb-6">
-                Secure, well-documented and high-performance APIs to connect
-                your applications and third-party services.
+                Tailored software solutions engineered to solve complex
+                business challenges.
               </p>
-
-              <div className="relative h-44 rounded-2xl overflow-hidden mb-6 bg-[#0B1623] p-4 font-mono text-[11px] text-[#2CCFD3] border border-slate-800 flex items-center justify-center">
-                <div>
-                  <div className="text-slate-400">{`// REST & GraphQL API`}</div>
-                  <div className="text-emerald-400">
-                    GET /api/v1/services 200 OK
-                  </div>
-                  <div className="text-white mt-1">{`{ "status": "success" }`}</div>
-                </div>
-              </div>
 
               <ul className="space-y-2.5 mb-8">
                 {[
-                  "RESTful API Development",
-                  "GraphQL API",
-                  "Third-party Integrations",
+                  "Tailored Business Logic",
+                  "Legacy System Modernization",
+                  "API Development & Integration",
                 ].map((item, i) => (
                   <li
                     key={i}
@@ -320,38 +328,25 @@ export default function ServiceCards({
             </div>
           </div>
 
-          {/* Card 6: Custom Software */}
-          <div
-            id="custom-software"
-            className="bg-white border border-slate-200 rounded-3xl p-8 flex flex-col justify-between hover:border-[#0E7C86] hover:shadow-xl transition-all shadow-sm group"
-          >
+          {/* Card 6: AI & Machine Learning */}
+          <div className="bg-white border border-slate-200 rounded-3xl p-8 flex flex-col justify-between hover:border-[#0E7C86] hover:shadow-xl transition-all shadow-sm group">
             <div>
               <div className="w-12 h-12 rounded-2xl bg-[#0E7C86]/10 text-[#0E7C86] flex items-center justify-center mb-6 group-hover:bg-[#0E7C86] group-hover:text-white transition-colors">
                 <Cpu className="w-6 h-6" />
               </div>
               <h3 className="text-xl font-bold font-heading text-[#0B1623] mb-3">
-                Custom Software
+                AI & Machine Learning
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed mb-6">
-                Tailor-made software solutions built to solve complex business
-                challenges and drive operational efficiency.
+                Smart automation, data analytics and intelligent features to
+                power next-gen products.
               </p>
-
-              <div className="relative h-44 rounded-2xl overflow-hidden mb-6 bg-slate-100 border border-slate-200">
-                <Image
-                  src="/images/finova_dashboard.png"
-                  alt="Custom Enterprise Software Mockup"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
 
               <ul className="space-y-2.5 mb-8">
                 {[
-                  "Business Software",
-                  "SaaS Development",
-                  "Legacy System Modernization",
+                  "Custom AI Model Development",
+                  "Natural Language Processing",
+                  "Predictive Analytics & Automation",
                 ].map((item, i) => (
                   <li
                     key={i}

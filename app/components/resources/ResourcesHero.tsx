@@ -1,22 +1,44 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronRight, Search } from "lucide-react";
+import { fetchSectionContent } from "@/lib/apiClient";
+import { subscribeToCmsUpdate } from "@/lib/cmsBus";
 
 export default function ResourcesHero() {
   const [searchQuery, setSearchQuery] = useState("");
-  const popularTags = ["Next.js", "React", "Cloud", "UI/UX", "DevOps"];
+  const [heroData, setHeroData] = useState<any>({
+    title: "Insights, Knowledge & Tools to Help You Grow",
+    subtitle: "RESOURCES & INSIGHTS",
+    description:
+      "Explore our blogs, case studies, FAQs, and tech stack to stay informed and empowered with the right information for your business.",
+    heroImage: "/images/resources_hero_3d.png",
+    popularTags: ["Next.js", "React", "Cloud", "UI/UX", "DevOps"],
+  });
+
+  const fetchContent = async () => {
+    const data = await fetchSectionContent("resources_hero", heroData);
+    if (data && data.title) setHeroData(data);
+  };
+
+  useEffect(() => {
+    fetchContent();
+    const unsubscribe = subscribeToCmsUpdate((key) => {
+      if (!key || key === "resources_hero") fetchContent();
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const popularTags: string[] = heroData.popularTags || ["Next.js", "React", "Cloud", "UI/UX", "DevOps"];
 
   return (
     <section className="relative overflow-hidden pt-8 pb-14 sm:pt-10 sm:pb-16 lg:pt-12 lg:pb-16 bg-[#0B1623] bg-grid-pattern">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-xs font-medium text-slate-400 mb-8">
-          <Link href="/" className="hover:text-white transition-colors">
-            Home
-          </Link>
+          <Link href="/" className="hover:text-white transition-colors">Home</Link>
           <ChevronRight className="w-3.5 h-3.5" />
           <span className="text-[#2CCFD3]">Resources</span>
         </div>
@@ -25,17 +47,13 @@ export default function ResourcesHero() {
           {/* Left Column */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
             <span className="text-[#2CCFD3] text-xs font-semibold tracking-wider uppercase font-heading">
-              RESOURCES HUB
+              {heroData.subtitle || "RESOURCES & INSIGHTS"}
             </span>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading tracking-tight text-white leading-tight">
-              Insights, Knowledge &<br />
-              Tools to <span className="text-[#2CCFD3]">Help You Grow</span>
+              {heroData.title}
             </h1>
-
             <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              Explore our blogs, case studies, guides, FAQs, and downloads to
-              stay informed and empowered with the right information for your
-              business.
+              {heroData.description}
             </p>
 
             {/* Search Bar */}
@@ -54,9 +72,7 @@ export default function ResourcesHero() {
 
             {/* Popular Topics */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-2">
-              <span className="text-xs text-slate-400 font-medium mr-1">
-                Popular:
-              </span>
+              <span className="text-xs text-slate-400 font-medium mr-1">Popular:</span>
               {popularTags.map((tag, idx) => (
                 <button
                   key={idx}
@@ -72,7 +88,7 @@ export default function ResourcesHero() {
           {/* Right Column Image */}
           <div className="lg:col-span-5 hidden lg:flex justify-center lg:justify-end">
             <Image
-              src="/images/resources_hero_3d.png"
+              src={heroData.heroImage || "/images/resources_hero_3d.png"}
               alt="Resources Hub 3D Tech Graphic"
               width={600}
               height={450}

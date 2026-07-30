@@ -1,17 +1,53 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Target, Eye, Award, CheckCircle2 } from "lucide-react";
+import { subscribeToCmsUpdate } from "@/lib/cmsBus";
 
 export default function MissionVisionValues() {
-  const values = [
-    "Client Success First",
-    "Quality Without Compromise",
-    "Integrity & Transparency",
-    "Collaboration & Respect",
-    "Innovation in Everything We Do",
-    "Continuous Learning",
-  ];
+  const [content, setContent] = useState<any>({
+    mission: {
+      title: "Our Mission",
+      text: "To deliver innovative, reliable, and scalable digital solutions that help businesses operate smarter, move faster, and grow beyond limits.",
+    },
+    vision: {
+      title: "Our Vision",
+      text: "To be a globally trusted technology partner recognized for building software that creates meaningful impact.",
+    },
+    values: {
+      title: "Our Values",
+      list: [
+        "Client Success First",
+        "Quality Without Compromise",
+        "Integrity & Transparency",
+        "Collaboration & Respect",
+        "Innovation in Everything We Do",
+        "Continuous Learning",
+      ],
+    },
+  });
+
+  const fetchContent = async () => {
+    try {
+      const res = await fetch("/api/content/about_mission_vision");
+      if (res.ok) {
+        const json = await res.json();
+        if (json.data) setContent(json.data);
+      }
+    } catch (e) {
+      // fallback
+    }
+  };
+
+  useEffect(() => {
+    fetchContent();
+    const unsubscribe = subscribeToCmsUpdate((key) => {
+      if (!key || key === "about_mission_vision") fetchContent();
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const valuesList: string[] = content.values?.list || [];
 
   return (
     <section className="py-16 bg-white text-slate-900">
@@ -24,12 +60,10 @@ export default function MissionVisionValues() {
                 <Target className="w-6 h-6" />
               </div>
               <h3 className="text-xl font-bold font-heading text-[#0B1623] mb-3">
-                Our Mission
+                {content.mission?.title || "Our Mission"}
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                To deliver innovative, reliable, and scalable digital solutions
-                that help businesses operate smarter, move faster, and grow
-                beyond limits.
+                {content.mission?.text}
               </p>
             </div>
           </div>
@@ -41,11 +75,10 @@ export default function MissionVisionValues() {
                 <Eye className="w-6 h-6" />
               </div>
               <h3 className="text-xl font-bold font-heading text-[#0B1623] mb-3">
-                Our Vision
+                {content.vision?.title || "Our Vision"}
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                To be a globally trusted technology partner recognized for
-                building software that creates meaningful impact.
+                {content.vision?.text}
               </p>
             </div>
           </div>
@@ -56,10 +89,10 @@ export default function MissionVisionValues() {
               <Award className="w-6 h-6" />
             </div>
             <h3 className="text-xl font-bold font-heading text-[#0B1623] mb-4">
-              Our Values
+              {content.values?.title || "Our Values"}
             </h3>
             <ul className="space-y-2.5 text-xs text-slate-700 font-medium">
-              {values.map((val, idx) => (
+              {valuesList.map((val, idx) => (
                 <li key={idx} className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-[#0E7C86] shrink-0" />
                   <span>{val}</span>

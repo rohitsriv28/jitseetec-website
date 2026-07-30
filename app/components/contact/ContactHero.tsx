@@ -1,11 +1,42 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronRight, Clock, Zap, ShieldCheck } from "lucide-react";
+import { subscribeToCmsUpdate } from "@/lib/cmsBus";
 
 export default function ContactHero() {
+  const [content, setContent] = useState<any>({
+    title: "Let's Build Something Great Together",
+    subtitle: "CONTACT US",
+    description:
+      "Have a project in mind, a question about our services, or want to explore how we can work together? Reach out to us today.",
+    heroImage: "/images/contact_hero_3d.png",
+  });
+
+  const fetchContent = async () => {
+    try {
+      const res = await fetch("/api/content/contact_hero");
+      if (res.ok) {
+        const json = await res.json();
+        if (json.data) setContent(json.data);
+      }
+    } catch (e) {
+      // fallback
+    }
+  };
+
+  useEffect(() => {
+    fetchContent();
+    const unsubscribe = subscribeToCmsUpdate((key) => {
+      if (!key || key === "contact_hero") {
+        fetchContent();
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
   return (
     <section className="relative overflow-hidden pt-8 pb-14 sm:pt-10 sm:pb-16 lg:pt-12 lg:pb-16 bg-[#0B1623] bg-grid-pattern">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -15,22 +46,19 @@ export default function ContactHero() {
             Home
           </Link>
           <ChevronRight className="w-3.5 h-3.5" />
-          <span className="text-[#2CCFD3]">Contact</span>
+          <span className="text-[#2CCFD3]">{content.subtitle || "Contact"}</span>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column Text & CTAs */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading tracking-tight text-white leading-tight">
-              Let&apos;s Build Something
-              <br />
-              Great <span className="text-[#2CCFD3]">Together</span>
+              {content.title || "Let's Build Something Great Together"}
             </h1>
 
             <p className="text-base sm:text-lg text-slate-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              Have a project in mind or need expert advice? We&apos;d love to
-              hear from you. Fill out the form or reach out using any of the
-              options below.
+              {content.description ||
+                "Have a project in mind or need expert advice? We'd love to hear from you. Fill out the form or reach out using any of the options below."}
             </p>
 
             {/* 3 Key Badges */}
@@ -82,11 +110,12 @@ export default function ContactHero() {
           {/* Right Column Image */}
           <div className="lg:col-span-5 hidden lg:flex justify-center lg:justify-end">
             <Image
-              src="/images/contact_hero_3d.png"
-              alt="Contact 3D Digital Envelope Graphic"
+              src={content.heroImage || "/images/contact_hero_3d.png"}
+              alt="Contact Hero Image"
               width={550}
               height={420}
-              className="w-full h-auto object-contain pointer-events-none"
+              className="w-full h-auto object-contain pointer-events-none rounded-2xl"
+              priority
             />
           </div>
         </div>

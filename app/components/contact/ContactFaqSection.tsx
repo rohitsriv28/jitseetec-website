@@ -1,40 +1,65 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { subscribeToCmsUpdate } from "@/lib/cmsBus";
 
 export default function ContactFaqSection() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [content, setContent] = useState<any>({
+    title: "Frequently Asked Questions",
+    faqs: [
+      {
+        q: "How long does it take to get a response?",
+        a: "We guarantee a response within 24 business hours. Our team reviews every inquiry thoroughly to provide expert recommendations.",
+      },
+      {
+        q: "Do you work with startups?",
+        a: "Yes! We specialize in helping early-stage startups build MVPs, scale digital infrastructure, and launch fast.",
+      },
+      {
+        q: "Can you sign an NDA?",
+        a: "Absolutely. We are 100% committed to intellectual property protection and happy to sign a Non-Disclosure Agreement before discussing project details.",
+      },
+      {
+        q: "What is your typical project timeline?",
+        a: "Project timelines depend on scope. Simple web apps take 3–6 weeks, while comprehensive mobile or enterprise software takes 3–6 months.",
+      },
+      {
+        q: "What if I'm not sure about my requirements?",
+        a: "No problem at all! Our solution architects will conduct a free discovery consultation to help define your technical scope, architecture, and roadmap.",
+      },
+    ],
+  });
 
-  const contactFaqs = [
-    {
-      q: "How long does it take to get a response?",
-      a: "We guarantee a response within 24 business hours. Our team reviews every inquiry thoroughly to provide expert recommendations.",
-    },
-    {
-      q: "Do you work with startups?",
-      a: "Yes! We specialize in helping early-stage startups build MVPs, scale digital infrastructure, and launch fast.",
-    },
-    {
-      q: "Can you sign an NDA?",
-      a: "Absolutely. We are 100% committed to intellectual property protection and happy to sign a Non-Disclosure Agreement before discussing project details.",
-    },
-    {
-      q: "What is your typical project timeline?",
-      a: "Project timelines depend on scope. Simple web apps take 3–6 weeks, while comprehensive mobile or enterprise software takes 3–6 months.",
-    },
-    {
-      q: "What if I'm not sure about my requirements?",
-      a: "No problem at all! Our solution architects will conduct a free discovery consultation to help define your technical scope, architecture, and roadmap.",
-    },
-  ];
+  const fetchContent = async () => {
+    try {
+      const res = await fetch("/api/content/contact_faqs");
+      if (res.ok) {
+        const json = await res.json();
+        if (json.data) setContent(json.data);
+      }
+    } catch (e) {
+      // fallback
+    }
+  };
+
+  useEffect(() => {
+    fetchContent();
+    const unsubscribe = subscribeToCmsUpdate((key) => {
+      if (!key || key === "contact_faqs") fetchContent();
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const faqs: any[] = content.faqs || [];
 
   return (
     <div className="lg:col-span-6 space-y-6">
       <div className="flex items-center justify-between">
         <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-[#0B1623]">
-          Frequently Asked Questions
+          {content.title || "Frequently Asked Questions"}
         </h2>
         <Link
           href="/resources#faqs"
@@ -46,7 +71,7 @@ export default function ContactFaqSection() {
       </div>
 
       <div className="space-y-3">
-        {contactFaqs.map((faq, idx) => (
+        {faqs.map((faq, idx) => (
           <div
             key={idx}
             className="bg-[#F7F9FB] border border-slate-200 rounded-2xl overflow-hidden shadow-sm"

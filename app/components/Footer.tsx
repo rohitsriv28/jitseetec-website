@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -12,10 +12,43 @@ import {
   Send,
   CheckCircle2,
 } from "lucide-react";
+import { subscribeToCmsUpdate } from "@/lib/cmsBus";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const [contactInfo, setContactInfo] = useState<any>({
+    location: "Imadol, Lalitpur, Bagmati Province, Nepal",
+    phone: "+977 98111 95091",
+    email: "hello@jitseetec.com",
+    linkedinUrl: "https://www.linkedin.com/company/jitseetec",
+    twitterUrl: "https://twitter.com/jitseetec",
+    githubUrl: "https://github.com/jitseetec",
+    instagramUrl: "https://instagram.com/jitseetec",
+    facebookUrl: "https://facebook.com/jitseetec",
+  });
+
+  const fetchContactInfo = async () => {
+    try {
+      const res = await fetch("/api/content/contact_info");
+      if (res.ok) {
+        const json = await res.json();
+        if (json.data) setContactInfo(json.data);
+      }
+    } catch (e) {
+      // fallback
+    }
+  };
+
+  useEffect(() => {
+    fetchContactInfo();
+    const unsubscribe = subscribeToCmsUpdate((key) => {
+      if (!key || key === "contact_info") {
+        fetchContactInfo();
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,7 +84,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-3 pt-2">
               <a
-                href="https://linkedin.com"
+                href={contactInfo.linkedinUrl || "https://linkedin.com"}
                 target="_blank"
                 rel="noreferrer"
                 className="w-9 h-9 rounded-full bg-slate-800/80 border border-slate-700/60 hover:border-[#2CCFD3] hover:bg-[#0E7C86] text-slate-300 hover:text-white flex items-center justify-center transition-colors"
@@ -62,7 +95,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://github.com"
+                href={contactInfo.githubUrl || "https://github.com"}
                 target="_blank"
                 rel="noreferrer"
                 className="w-9 h-9 rounded-full bg-slate-800/80 border border-slate-700/60 hover:border-[#2CCFD3] hover:bg-[#0E7C86] text-slate-300 hover:text-white flex items-center justify-center transition-colors"
@@ -73,7 +106,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://twitter.com"
+                href={contactInfo.twitterUrl || "https://twitter.com"}
                 target="_blank"
                 rel="noreferrer"
                 className="w-9 h-9 rounded-full bg-slate-800/80 border border-slate-700/60 hover:border-[#2CCFD3] hover:bg-[#0E7C86] text-slate-300 hover:text-white flex items-center justify-center transition-colors"
@@ -84,7 +117,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://facebook.com"
+                href={contactInfo.facebookUrl || "https://facebook.com"}
                 target="_blank"
                 rel="noreferrer"
                 className="w-9 h-9 rounded-full bg-slate-800/80 border border-slate-700/60 hover:border-[#2CCFD3] hover:bg-[#0E7C86] text-slate-300 hover:text-white flex items-center justify-center transition-colors"
@@ -256,26 +289,25 @@ export default function Footer() {
                 <li className="flex items-start gap-2.5 text-slate-400">
                   <MapPin className="w-4 h-4 text-[#2CCFD3] shrink-0 mt-0.5" />
                   <span>
-                    Near Anandit Church, Imadol, Lalitpur, Bagmati Province,
-                    Nepal
+                    {contactInfo.location || "Imadol, Lalitpur, Bagmati Province, Nepal"}
                   </span>
                 </li>
                 <li className="flex items-center gap-2.5 text-slate-400">
                   <Phone className="w-4 h-4 text-[#2CCFD3] shrink-0" />
                   <a
-                    href="tel:+9779811195091"
+                    href={`tel:${(contactInfo.phone || "+977 98111 95091").replace(/\s+/g, "")}`}
                     className="hover:text-white transition-colors"
                   >
-                    +977 98111 95091
+                    {contactInfo.phone || "+977 98111 95091"}
                   </a>
                 </li>
                 <li className="flex items-center gap-2.5 text-slate-400">
                   <Mail className="w-4 h-4 text-[#2CCFD3] shrink-0" />
                   <a
-                    href="mailto:hello@jitseetec.com"
+                    href={`mailto:${contactInfo.email || "hello@jitseetec.com"}`}
                     className="hover:text-white transition-colors"
                   >
-                    hello@jitseetec.com
+                    {contactInfo.email || "hello@jitseetec.com"}
                   </a>
                 </li>
               </ul>

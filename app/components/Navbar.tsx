@@ -19,7 +19,6 @@ import {
   BookOpen,
   FileText,
   HelpCircle,
-  Download,
   Layers,
   Home as HomeIcon,
   Briefcase,
@@ -247,7 +246,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
             </Link>
 
             {resourcesDropdownOpen && (
-              <div className="absolute top-full left-0 w-[450px] pt-3 animate-in fade-in slide-in-from-top-2 duration-200">
+              <div className="absolute top-full left-0 w-[420px] pt-3 animate-in fade-in slide-in-from-top-2 duration-200">
                 <div className="bg-[#0B1623] border border-slate-700/80 rounded-2xl p-4 shadow-2xl backdrop-blur-xl grid grid-cols-12 gap-4">
                   {/* Left Column Links */}
                   <div className="col-span-6 space-y-1">
@@ -264,9 +263,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
                       className="flex items-center gap-3 p-2 rounded-xl hover:bg-[#0E7C86]/20 text-slate-300 hover:text-white transition-colors group"
                     >
                       <FileText className="w-4 h-4 text-[#2CCFD3] group-hover:scale-110 transition-transform" />
-                      <span className="text-xs font-semibold">
-                        Case Studies
-                      </span>
+                      <span className="text-xs font-semibold">Case Studies</span>
                     </Link>
 
                     <Link
@@ -278,19 +275,11 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
                     </Link>
 
                     <Link
-                      href="/resources#guides"
+                      href="/resources#tech"
                       className="flex items-center gap-3 p-2 rounded-xl hover:bg-[#0E7C86]/20 text-slate-300 hover:text-white transition-colors group"
                     >
                       <Layers className="w-4 h-4 text-[#2CCFD3] group-hover:scale-110 transition-transform" />
-                      <span className="text-xs font-semibold">Guides</span>
-                    </Link>
-
-                    <Link
-                      href="/resources#downloads"
-                      className="flex items-center gap-3 p-2 rounded-xl hover:bg-[#0E7C86]/20 text-slate-300 hover:text-white transition-colors group"
-                    >
-                      <Download className="w-4 h-4 text-[#2CCFD3] group-hover:scale-110 transition-transform" />
-                      <span className="text-xs font-semibold">Downloads</span>
+                      <span className="text-xs font-semibold">Tech Stack</span>
                     </Link>
                   </div>
 
@@ -304,8 +293,8 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
                         Insights & Knowledge
                       </h4>
                       <p className="text-[11px] text-slate-400 leading-relaxed mb-4">
-                        Explore expert insights, in-depth case studies, and
-                        practical guides to help your business grow.
+                        Explore expert insights, in-depth case studies, FAQs,
+                        and our full technology stack.
                       </p>
                     </div>
 

@@ -7,8 +7,6 @@ import {
   Briefcase,
   HelpCircle,
   Code2,
-  BookOpen,
-  Download,
   ArrowRight,
 } from "lucide-react";
 
@@ -38,18 +36,6 @@ export default function CategoryExplorer() {
       icon: Code2,
       linkText: "Explore Technologies",
     },
-    {
-      title: "Guides",
-      desc: "Step-by-step guides and best practices to help you make better tech decisions.",
-      icon: BookOpen,
-      linkText: "Explore Guides",
-    },
-    {
-      title: "Downloads",
-      desc: "E-books, checklists, and resources to support your digital transformation.",
-      icon: Download,
-      linkText: "Explore Downloads",
-    },
   ];
 
   return (
@@ -64,7 +50,7 @@ export default function CategoryExplorer() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {categories.map((cat, idx) => {
             const IconComponent = cat.icon;
             return (

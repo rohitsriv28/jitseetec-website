@@ -1,97 +1,59 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
+import { subscribeToCmsUpdate } from "@/lib/cmsBus";
 
 export default function CategoryFilterGrid() {
   const [activeCategory, setActiveCategory] = useState("All Projects");
   const [activeIndustry, setActiveIndustry] = useState("All Industries");
+  const [projects, setProjects] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
+  const fetchProjects = async () => {
+    try {
+      const res = await fetch("/api/projects");
+      if (res.ok) {
+        const json = await res.json();
+        setProjects(json.projects || json.data || json || []);
+      }
+    } catch (e) {
+      // fallback: keep empty
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProjects();
+    const unsubscribe = subscribeToCmsUpdate((key) => {
+      if (!key || key === "projects_module") fetchProjects();
+    });
+    return () => unsubscribe();
+  }, []);
+
+  // Derive unique categories and industries from live data
   const categories = [
     "All Projects",
-    "Web Development",
-    "Mobile Apps",
-    "UI/UX Design",
-    "Cloud & DevOps",
-    "Custom Software",
+    ...Array.from(new Set(projects.map((p) => p.category))).filter(Boolean),
   ];
 
   const industries = [
     "All Industries",
-    "Fintech",
-    "Healthcare",
-    "E-commerce",
-    "Real Estate",
-    "Education",
-    "Logistics",
+    ...Array.from(new Set(projects.map((p) => p.industry))).filter(Boolean),
   ];
 
-  const projects = [
-    {
-      id: "finova",
-      category: "Web Development",
-      industry: "Fintech",
-      title: "Finova Dashboard",
-      desc: "A comprehensive financial management platform for businesses with real-time analytics, budget tracking, and automated reporting.",
-      tags: ["React", "Node.js", "MongoDB"],
-      image: "/images/finova_dashboard.png",
-    },
-    {
-      id: "mediflow",
-      category: "Mobile Apps",
-      industry: "Healthcare",
-      title: "MediFlow App",
-      desc: "Telemedicine mobile app connecting doctors and patients seamlessly with appointments, video consultations, and e-prescriptions.",
-      tags: ["Flutter", "Firebase", "Node.js"],
-      image: "/images/mediflow_app.png",
-    },
-    {
-      id: "shophub",
-      category: "Web Development",
-      industry: "E-commerce",
-      title: "ShopHub Platform",
-      desc: "Feature-rich e-commerce platform with advanced search, recommendation engine, secure payments, and order management system.",
-      tags: ["Next.js", "Tailwind CSS", "Stripe"],
-      image: "/images/shophub_platform.png",
-    },
-    {
-      id: "urbannest",
-      category: "UI/UX Design",
-      industry: "Real Estate",
-      title: "UrbanNest Website",
-      desc: "Modern real estate platform for property listings, virtual tours, lead management, and advanced search for buyers and agents.",
-      tags: ["Vue.js", "Laravel", "MySQL"],
-      image: "/images/urban_nest.png",
-    },
-    {
-      id: "edusphere",
-      category: "Custom Software",
-      industry: "Education",
-      title: "EduSphere LMS",
-      desc: "Learning management system with course management, live classes, assessments, and progress tracking for students.",
-      tags: ["React", "Node.js", "PostgreSQL"],
-      image: "/images/edusphere_lms.png",
-    },
-    {
-      id: "transpotrack",
-      category: "Cloud & DevOps",
-      industry: "Logistics",
-      title: "TranspoTrack System",
-      desc: "Logistics and fleet management system with real-time tracking, route optimization, and maintenance management.",
-      tags: ["Angular", ".NET Core", "SQL Server"],
-      image: "/images/transpotrack.png",
-    },
-  ];
-
-  const filteredProjects = projects.filter((p) => {
-    const matchCat =
-      activeCategory === "All Projects" || p.category === activeCategory;
-    const matchInd =
-      activeIndustry === "All Industries" || p.industry === activeIndustry;
-    return matchCat && matchInd;
-  });
+  const filteredProjects = projects
+    .filter((p) => {
+      const matchCat =
+        activeCategory === "All Projects" || p.category === activeCategory;
+      const matchInd =
+        activeIndustry === "All Industries" || p.industry === activeIndustry;
+      return matchCat && matchInd;
+    })
+    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
   return (
     <section className="py-16 bg-[#F7F9FB] text-slate-900">
@@ -130,57 +92,84 @@ export default function CategoryFilterGrid() {
           </div>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {filteredProjects.map((project) => (
-            <Link
-              href="/case-studies"
-              key={project.id}
-              className="bg-white border border-slate-200 rounded-3xl overflow-hidden group hover:border-[#0E7C86] hover:shadow-xl transition-all shadow-sm flex flex-col justify-between"
-            >
-              <div>
-                <div className="relative h-52 bg-slate-100 overflow-hidden border-b border-slate-100">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-4 left-4 flex gap-2">
-                    <span className="px-3 py-1 rounded-full bg-white/95 text-[#0E7C86] text-[11px] font-bold shadow-sm backdrop-blur-md">
-                      {project.category}
-                    </span>
-                    <span className="px-3 py-1 rounded-full bg-[#0B1623]/80 text-white text-[11px] font-bold backdrop-blur-md">
-                      {project.industry}
-                    </span>
-                  </div>
-                </div>
+        {/* Loading State */}
+        {loading && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {[...Array(6)].map((_, i) => (
+              <div
+                key={i}
+                className="bg-white border border-slate-200 rounded-3xl overflow-hidden animate-pulse"
+              >
+                <div className="h-52 bg-slate-200" />
                 <div className="p-6 space-y-3">
-                  <h3 className="text-xl font-bold font-heading text-[#0B1623] group-hover:text-[#0E7C86] transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    {project.desc}
-                  </p>
+                  <div className="h-4 bg-slate-200 rounded w-3/4" />
+                  <div className="h-3 bg-slate-100 rounded w-full" />
+                  <div className="h-3 bg-slate-100 rounded w-5/6" />
                 </div>
               </div>
+            ))}
+          </div>
+        )}
 
-              <div className="px-6 pb-6 pt-2">
-                <div className="flex flex-wrap gap-2 pt-3 border-t border-slate-100">
-                  {project.tags.map((tag, i) => (
-                    <span
-                      key={i}
-                      className="px-2.5 py-1 rounded-md bg-[#F3F4F6] text-[11px] font-semibold text-slate-700"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+        {/* Projects Grid */}
+        {!loading && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {filteredProjects.length === 0 ? (
+              <p className="col-span-3 text-center text-slate-400 text-sm py-16">
+                No projects found for selected filters.
+              </p>
+            ) : (
+              filteredProjects.map((project) => (
+                <Link
+                  href="/case-studies"
+                  key={project._id || project.id}
+                  className="bg-white border border-slate-200 rounded-3xl overflow-hidden group hover:border-[#0E7C86] hover:shadow-xl transition-all shadow-sm flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="relative h-52 bg-slate-100 overflow-hidden border-b border-slate-100">
+                      <Image
+                        src={project.image || "/images/placeholder.png"}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute top-4 left-4 flex gap-2">
+                        <span className="px-3 py-1 rounded-full bg-white/95 text-[#0E7C86] text-[11px] font-bold shadow-sm backdrop-blur-md">
+                          {project.category}
+                        </span>
+                        <span className="px-3 py-1 rounded-full bg-[#0B1623]/80 text-white text-[11px] font-bold backdrop-blur-md">
+                          {project.industry}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="p-6 space-y-3">
+                      <h3 className="text-xl font-bold font-heading text-[#0B1623] group-hover:text-[#0E7C86] transition-colors">
+                        {project.title}
+                      </h3>
+                      <p className="text-xs text-slate-600 leading-relaxed">
+                        {project.desc}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="px-6 pb-6 pt-2">
+                    <div className="flex flex-wrap gap-2 pt-3 border-t border-slate-100">
+                      {(project.tags || []).map((tag: string, i: number) => (
+                        <span
+                          key={i}
+                          className="px-2.5 py-1 rounded-md bg-[#F3F4F6] text-[11px] font-semibold text-slate-700"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </Link>
+              ))
+            )}
+          </div>
+        )}
       </div>
     </section>
   );
