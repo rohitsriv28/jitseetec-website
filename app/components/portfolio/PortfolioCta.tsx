@@ -8,7 +8,9 @@ interface PortfolioCtaProps {
   onOpenConsultation: () => void;
 }
 
-export default function PortfolioCta({ onOpenConsultation }: PortfolioCtaProps) {
+export default function PortfolioCta({
+  onOpenConsultation,
+}: PortfolioCtaProps) {
   const [content, setContent] = useState<any>({
     title: "Have a Similar Project in Mind?",
     description:

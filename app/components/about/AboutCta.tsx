@@ -14,7 +14,12 @@ import {
 import { subscribeToCmsUpdate } from "@/lib/cmsBus";
 
 const iconMap: Record<string, React.ElementType> = {
-  Globe, Users, Clock, Heart, Zap, ShieldCheck,
+  Globe,
+  Users,
+  Clock,
+  Heart,
+  Zap,
+  ShieldCheck,
 };
 
 interface AboutCtaProps {
@@ -28,12 +33,32 @@ export default function AboutCta({ onOpenConsultation }: AboutCtaProps) {
     description:
       "We believe great work happens when people feel trusted, supported, and empowered to do their best work—wherever they are.",
     perks: [
-      { title: "Work From Anywhere", desc: "Flexibility across timezones", icon: "Globe" },
-      { title: "Strong Collaboration", desc: "Connected & aligned", icon: "Users" },
+      {
+        title: "Work From Anywhere",
+        desc: "Flexibility across timezones",
+        icon: "Globe",
+      },
+      {
+        title: "Strong Collaboration",
+        desc: "Connected & aligned",
+        icon: "Users",
+      },
       { title: "Flexible Hours", desc: "Focus on outcomes", icon: "Clock" },
-      { title: "Wellness First", desc: "Mental health & balance", icon: "Heart" },
-      { title: "Learning Culture", desc: "Continuous growth & skills", icon: "Zap" },
-      { title: "Open Communication", desc: "Transparency & feedback", icon: "ShieldCheck" },
+      {
+        title: "Wellness First",
+        desc: "Mental health & balance",
+        icon: "Heart",
+      },
+      {
+        title: "Learning Culture",
+        desc: "Continuous growth & skills",
+        icon: "Zap",
+      },
+      {
+        title: "Open Communication",
+        desc: "Transparency & feedback",
+        icon: "ShieldCheck",
+      },
     ],
     buttonLabel: "Life at JitSeeTec",
   });

@@ -61,10 +61,16 @@ export default function InteractiveMapSection() {
             </h3>
             <p className="text-xs text-slate-600 flex items-start gap-2 leading-relaxed">
               <MapPin className="w-4 h-4 text-[#0E7C86] shrink-0 mt-0.5" />
-              <span>{content.location || "Imadol, Lalitpur, Bagmati Province, Nepal"}</span>
+              <span>
+                {content.location ||
+                  "Imadol, Lalitpur, Bagmati Province, Nepal"}
+              </span>
             </p>
             <a
-              href={content.googleMapsDirectionsUrl || "https://maps.app.goo.gl/fa84PRvN3VryUcnh7"}
+              href={
+                content.googleMapsDirectionsUrl ||
+                "https://maps.app.goo.gl/fa84PRvN3VryUcnh7"
+              }
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0E7C86] hover:bg-[#0B6871] text-white text-xs font-bold transition-all shadow-md"

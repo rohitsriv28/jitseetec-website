@@ -31,14 +31,22 @@ export default function ResourcesHero() {
     return () => unsubscribe();
   }, []);
 
-  const popularTags: string[] = heroData.popularTags || ["Next.js", "React", "Cloud", "UI/UX", "DevOps"];
+  const popularTags: string[] = heroData.popularTags || [
+    "Next.js",
+    "React",
+    "Cloud",
+    "UI/UX",
+    "DevOps",
+  ];
 
   return (
     <section className="relative overflow-hidden pt-8 pb-14 sm:pt-10 sm:pb-16 lg:pt-12 lg:pb-16 bg-[#0B1623] bg-grid-pattern">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-xs font-medium text-slate-400 mb-8">
-          <Link href="/" className="hover:text-white transition-colors">Home</Link>
+          <Link href="/" className="hover:text-white transition-colors">
+            Home
+          </Link>
           <ChevronRight className="w-3.5 h-3.5" />
           <span className="text-[#2CCFD3]">Resources</span>
         </div>
@@ -72,7 +80,9 @@ export default function ResourcesHero() {
 
             {/* Popular Topics */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-2">
-              <span className="text-xs text-slate-400 font-medium mr-1">Popular:</span>
+              <span className="text-xs text-slate-400 font-medium mr-1">
+                Popular:
+              </span>
               {popularTags.map((tag, idx) => (
                 <button
                   key={idx}

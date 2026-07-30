@@ -38,7 +38,12 @@ export default function LeadershipTeam() {
   }, []);
 
   const getInitials = (name: string) =>
-    name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 3);
+    name
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 3);
 
   return (
     <>
@@ -66,7 +71,10 @@ export default function LeadershipTeam() {
           {loading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
               {[1, 2].map((i) => (
-                <div key={i} className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 flex gap-6 animate-pulse">
+                <div
+                  key={i}
+                  className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 flex gap-6 animate-pulse"
+                >
                   <div className="w-36 h-44 rounded-2xl bg-slate-200 shrink-0" />
                   <div className="flex-1 space-y-3 pt-2">
                     <div className="h-4 bg-slate-200 rounded w-3/4" />
@@ -161,7 +169,10 @@ export default function LeadershipTeam() {
           {loading ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="bg-[#F7F9FB] border border-slate-200 rounded-2xl p-5 animate-pulse">
+                <div
+                  key={i}
+                  className="bg-[#F7F9FB] border border-slate-200 rounded-2xl p-5 animate-pulse"
+                >
                   <div className="w-14 h-14 rounded-full bg-slate-200 mx-auto mb-3" />
                   <div className="h-3 bg-slate-200 rounded w-3/4 mx-auto mb-2" />
                   <div className="h-2 bg-slate-100 rounded w-1/2 mx-auto" />

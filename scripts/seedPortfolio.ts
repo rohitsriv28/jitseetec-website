@@ -22,7 +22,9 @@ let MONGODB_URI =
   process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/jitseetec";
 
 if (MONGODB_URI.includes("mongodb://") && MONGODB_URI.includes("mongodb.net")) {
-  const match = MONGODB_URI.match(/^mongodb:\/\/([^:]+):([^@]+)@(?:[^\.]+\.)+([^\/]+)\/([^?]+)/);
+  const match = MONGODB_URI.match(
+    /^mongodb:\/\/([^:]+):([^@]+)@(?:[^\.]+\.)+([^\/]+)\/([^?]+)/,
+  );
   if (match) {
     const [, user, pass, domain, dbName] = match;
     MONGODB_URI = `mongodb+srv://${encodeURIComponent(user)}:${encodeURIComponent(pass)}@${domain}/${dbName}?retryWrites=true&w=majority`;
@@ -47,8 +49,7 @@ async function seedPortfolio() {
     mongoose.models.SiteContent ||
     (await import("../models/SiteContent")).default;
   const Project =
-    mongoose.models.Project ||
-    (await import("../models/Project")).default;
+    mongoose.models.Project || (await import("../models/Project")).default;
   const Testimonial =
     mongoose.models.Testimonial ||
     (await import("../models/Testimonial")).default;
@@ -66,7 +67,7 @@ async function seedPortfolio() {
         heroImage: "/images/portfolio_hero_3d.png",
       },
     },
-    { upsert: true, returnDocument: "after" }
+    { upsert: true, returnDocument: "after" },
   );
   console.log("  ✅ portfolio_hero done.");
 
@@ -88,7 +89,7 @@ async function seedPortfolio() {
         ],
       },
     },
-    { upsert: true, returnDocument: "after" }
+    { upsert: true, returnDocument: "after" },
   );
   console.log("  ✅ portfolio_brands done.");
 
@@ -104,7 +105,7 @@ async function seedPortfolio() {
         buttonLabel: "Start a Project",
       },
     },
-    { upsert: true, returnDocument: "after" }
+    { upsert: true, returnDocument: "after" },
   );
   console.log("  ✅ portfolio_cta done.");
 
@@ -187,11 +188,10 @@ async function seedPortfolio() {
   ];
 
   for (const proj of projectsToSeed) {
-    await Project.findOneAndUpdate(
-      { title: proj.title },
-      proj,
-      { upsert: true, returnDocument: "after" }
-    );
+    await Project.findOneAndUpdate({ title: proj.title }, proj, {
+      upsert: true,
+      returnDocument: "after",
+    });
     console.log(`  ✅ Project: ${proj.title}`);
   }
 
@@ -260,7 +260,7 @@ async function seedPortfolio() {
     await Testimonial.findOneAndUpdate(
       { author: t.author, company: t.company },
       t,
-      { upsert: true, returnDocument: "after" }
+      { upsert: true, returnDocument: "after" },
     );
     console.log(`  ✅ Testimonial: ${t.author} — ${t.company}`);
   }

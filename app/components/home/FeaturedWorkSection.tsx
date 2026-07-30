@@ -90,8 +90,8 @@ export default function FeaturedWorkSection() {
             const tags = Array.isArray(project.tags)
               ? project.tags
               : typeof project.tags === "string"
-              ? project.tags.split(",").map((t: string) => t.trim())
-              : ["Tech", "Design"];
+                ? project.tags.split(",").map((t: string) => t.trim())
+                : ["Tech", "Design"];
 
             return (
               <div

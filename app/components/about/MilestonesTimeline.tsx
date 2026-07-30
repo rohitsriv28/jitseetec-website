@@ -11,11 +11,31 @@ export default function MilestonesTimeline() {
     subtitle: "OUR JOURNEY",
     title: "Milestones That Define Our Growth",
     milestones: [
-      { year: "2022", title: "Founded", desc: "JitSeeTec was founded with a mission to help businesses transform through technology." },
-      { year: "2023", title: "First Projects", desc: "Delivered our first set of successful projects for startups and SMEs." },
-      { year: "2024", title: "Team Growth", desc: "Expanded our team and strengthened our development and delivery capabilities." },
-      { year: "2025", title: "Global Reach", desc: "Started working with clients across different regions and industries." },
-      { year: "Future", title: "What's Next", desc: "Continuing to innovate, collaborate, and build impactful products." },
+      {
+        year: "2022",
+        title: "Founded",
+        desc: "JitSeeTec was founded with a mission to help businesses transform through technology.",
+      },
+      {
+        year: "2023",
+        title: "First Projects",
+        desc: "Delivered our first set of successful projects for startups and SMEs.",
+      },
+      {
+        year: "2024",
+        title: "Team Growth",
+        desc: "Expanded our team and strengthened our development and delivery capabilities.",
+      },
+      {
+        year: "2025",
+        title: "Global Reach",
+        desc: "Started working with clients across different regions and industries.",
+      },
+      {
+        year: "Future",
+        title: "What's Next",
+        desc: "Continuing to innovate, collaborate, and build impactful products.",
+      },
     ],
   });
 

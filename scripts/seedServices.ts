@@ -22,7 +22,9 @@ let MONGODB_URI =
   process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/jitseetec";
 
 if (MONGODB_URI.includes("mongodb://") && MONGODB_URI.includes("mongodb.net")) {
-  const match = MONGODB_URI.match(/^mongodb:\/\/([^:]+):([^@]+)@(?:[^\.]+\.)+([^\/]+)\/([^?]+)/);
+  const match = MONGODB_URI.match(
+    /^mongodb:\/\/([^:]+):([^@]+)@(?:[^\.]+\.)+([^\/]+)\/([^?]+)/,
+  );
   if (match) {
     const [, user, pass, domain, dbName] = match;
     MONGODB_URI = `mongodb+srv://${encodeURIComponent(user)}:${encodeURIComponent(pass)}@${domain}/${dbName}?retryWrites=true&w=majority`;
@@ -30,7 +32,9 @@ if (MONGODB_URI.includes("mongodb://") && MONGODB_URI.includes("mongodb.net")) {
 }
 
 async function seedServices() {
-  console.log("🌱 Starting Dedicated JitSeeTec Services Page Database Seeding...");
+  console.log(
+    "🌱 Starting Dedicated JitSeeTec Services Page Database Seeding...",
+  );
   console.log("Connecting via Mongoose...");
 
   try {
@@ -44,7 +48,8 @@ async function seedServices() {
   }
 
   const SiteContent =
-    mongoose.models.SiteContent || (await import("../models/SiteContent")).default;
+    mongoose.models.SiteContent ||
+    (await import("../models/SiteContent")).default;
 
   console.log("🌐 Seeding Services Page Content Sections...");
 
@@ -74,12 +79,42 @@ async function seedServices() {
         subtitle: "OUR PROCESS",
         heading: "A Collaborative Process That Delivers Results",
         steps: [
-          { stepNumber: 1, step: "01", title: "Discover", desc: "We understand your business, goals and challenges." },
-          { stepNumber: 2, step: "02", title: "Plan", desc: "We define the strategy, roadmap and technical approach." },
-          { stepNumber: 3, step: "03", title: "Design", desc: "We create intuitive designs that users love." },
-          { stepNumber: 4, step: "04", title: "Develop", desc: "We build robust, scalable and secure solutions." },
-          { stepNumber: 5, step: "05", title: "Deliver", desc: "We test, deploy and deliver great software on time." },
-          { stepNumber: 6, step: "06", title: "Support", desc: "We provide ongoing support and continuous improvement." },
+          {
+            stepNumber: 1,
+            step: "01",
+            title: "Discover",
+            desc: "We understand your business, goals and challenges.",
+          },
+          {
+            stepNumber: 2,
+            step: "02",
+            title: "Plan",
+            desc: "We define the strategy, roadmap and technical approach.",
+          },
+          {
+            stepNumber: 3,
+            step: "03",
+            title: "Design",
+            desc: "We create intuitive designs that users love.",
+          },
+          {
+            stepNumber: 4,
+            step: "04",
+            title: "Develop",
+            desc: "We build robust, scalable and secure solutions.",
+          },
+          {
+            stepNumber: 5,
+            step: "05",
+            title: "Deliver",
+            desc: "We test, deploy and deliver great software on time.",
+          },
+          {
+            stepNumber: 6,
+            step: "06",
+            title: "Support",
+            desc: "We provide ongoing support and continuous improvement.",
+          },
         ],
       },
     },
@@ -118,7 +153,7 @@ async function seedServices() {
     await SiteContent.findOneAndUpdate(
       { sectionKey: item.sectionKey },
       { data: item.data },
-      { upsert: true, new: true }
+      { upsert: true, new: true },
     );
   }
 

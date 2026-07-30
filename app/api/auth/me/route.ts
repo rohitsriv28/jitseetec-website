@@ -27,6 +27,6 @@ export async function GET(req: Request) {
           }
         : null,
     },
-    "Session verified"
+    "Session verified",
   );
 }

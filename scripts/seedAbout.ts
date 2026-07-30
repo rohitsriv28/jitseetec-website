@@ -22,7 +22,9 @@ let MONGODB_URI =
   process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/jitseetec";
 
 if (MONGODB_URI.includes("mongodb://") && MONGODB_URI.includes("mongodb.net")) {
-  const match = MONGODB_URI.match(/^mongodb:\/\/([^:]+):([^@]+)@(?:[^\.]+\.)+([^\/]+)\/([^?]+)/);
+  const match = MONGODB_URI.match(
+    /^mongodb:\/\/([^:]+):([^@]+)@(?:[^\.]+\.)+([^\/]+)\/([^?]+)/,
+  );
   if (match) {
     const [, user, pass, domain, dbName] = match;
     MONGODB_URI = `mongodb+srv://${encodeURIComponent(user)}:${encodeURIComponent(pass)}@${domain}/${dbName}?retryWrites=true&w=majority`;
@@ -67,7 +69,7 @@ async function seedAbout() {
         ],
       },
     },
-    { upsert: true, returnDocument: "after" }
+    { upsert: true, returnDocument: "after" },
   );
   console.log("  ✅ about_hero done.");
 
@@ -98,7 +100,7 @@ async function seedAbout() {
         },
       },
     },
-    { upsert: true, returnDocument: "after" }
+    { upsert: true, returnDocument: "after" },
   );
   console.log("  ✅ about_mission_vision done.");
 
@@ -139,7 +141,7 @@ async function seedAbout() {
         ],
       },
     },
-    { upsert: true, returnDocument: "after" }
+    { upsert: true, returnDocument: "after" },
   );
   console.log("  ✅ about_milestones done.");
 
@@ -155,7 +157,7 @@ async function seedAbout() {
         buttonLabel: "View Open Positions",
       },
     },
-    { upsert: true, returnDocument: "after" }
+    { upsert: true, returnDocument: "after" },
   );
   console.log("  ✅ about_cta done.");
 
@@ -249,9 +251,13 @@ async function seedAbout() {
 
   for (const member of teamMembers) {
     await TeamMember.findOneAndUpdate(
-      { name: member.name, isLeadership: member.isLeadership, order: member.order },
+      {
+        name: member.name,
+        isLeadership: member.isLeadership,
+        order: member.order,
+      },
       member,
-      { upsert: true, returnDocument: "after" }
+      { upsert: true, returnDocument: "after" },
     );
     const tag = member.isLeadership ? "👑 Leader" : "👤 Team";
     console.log(`  ✅ ${tag}: ${member.name} — ${member.role}`);
@@ -268,17 +274,37 @@ async function seedAbout() {
         description:
           "We believe great work happens when people feel trusted, supported, and empowered to do their best work—wherever they are.",
         perks: [
-          { title: "Work From Anywhere", desc: "Flexibility across timezones", icon: "Globe" },
-          { title: "Strong Collaboration", desc: "Connected & aligned", icon: "Users" },
+          {
+            title: "Work From Anywhere",
+            desc: "Flexibility across timezones",
+            icon: "Globe",
+          },
+          {
+            title: "Strong Collaboration",
+            desc: "Connected & aligned",
+            icon: "Users",
+          },
           { title: "Flexible Hours", desc: "Focus on outcomes", icon: "Clock" },
-          { title: "Wellness First", desc: "Mental health & balance", icon: "Heart" },
-          { title: "Learning Culture", desc: "Continuous growth & skills", icon: "Zap" },
-          { title: "Open Communication", desc: "Transparency & feedback", icon: "ShieldCheck" },
+          {
+            title: "Wellness First",
+            desc: "Mental health & balance",
+            icon: "Heart",
+          },
+          {
+            title: "Learning Culture",
+            desc: "Continuous growth & skills",
+            icon: "Zap",
+          },
+          {
+            title: "Open Communication",
+            desc: "Transparency & feedback",
+            icon: "ShieldCheck",
+          },
         ],
         buttonLabel: "Life at JitSeeTec",
       },
     },
-    { upsert: true, returnDocument: "after" }
+    { upsert: true, returnDocument: "after" },
   );
   console.log("  ✅ about_culture done.");
 

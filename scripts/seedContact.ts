@@ -23,7 +23,7 @@ let MONGODB_URI =
 
 if (MONGODB_URI.includes("mongodb://") && MONGODB_URI.includes("mongodb.net")) {
   const match = MONGODB_URI.match(
-    /^mongodb:\/\/([^:]+):([^@]+)@(?:[^\.]+\.)+([^\/]+)\/([^?]+)/
+    /^mongodb:\/\/([^:]+):([^@]+)@(?:[^\.]+\.)+([^\/]+)\/([^?]+)/,
   );
   if (match) {
     const [, user, pass, domain, dbName] = match;
@@ -74,7 +74,7 @@ async function seedContact() {
         ],
       },
     },
-    { upsert: true, returnDocument: "after" }
+    { upsert: true, returnDocument: "after" },
   );
   console.log("  ✅ contact_hero done.");
 
@@ -98,7 +98,7 @@ async function seedContact() {
         facebookUrl: "https://facebook.com/jitseetec",
       },
     },
-    { upsert: true, returnDocument: "after" }
+    { upsert: true, returnDocument: "after" },
   );
   console.log("  ✅ contact_info done.");
 
@@ -133,7 +133,7 @@ async function seedContact() {
         ],
       },
     },
-    { upsert: true, returnDocument: "after" }
+    { upsert: true, returnDocument: "after" },
   );
   console.log("  ✅ contact_offices done.");
 
@@ -168,7 +168,7 @@ async function seedContact() {
         ],
       },
     },
-    { upsert: true, returnDocument: "after" }
+    { upsert: true, returnDocument: "after" },
   );
   console.log("  ✅ contact_faqs done.");
 
@@ -179,12 +179,11 @@ async function seedContact() {
     {
       data: {
         title: "Ready to Start Your Project?",
-        description:
-          "Let's turn your ideas into powerful digital solutions.",
+        description: "Let's turn your ideas into powerful digital solutions.",
         buttonLabel: "Book a Free Consultation",
       },
     },
-    { upsert: true, returnDocument: "after" }
+    { upsert: true, returnDocument: "after" },
   );
   console.log("  ✅ contact_cta done.");
 

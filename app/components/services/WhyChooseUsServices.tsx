@@ -56,30 +56,31 @@ export default function WhyChooseUsServices() {
     return () => unsubscribe();
   }, []);
 
-  const pillars = content.pillars && content.pillars.length > 0
-    ? content.pillars
-    : [
-        {
-          title: "Experienced Team",
-          desc: "Skilled professionals with years of experience in modern technologies.",
-        },
-        {
-          title: "Agile & Transparent",
-          desc: "We work in agile sprints and keep you updated at every step.",
-        },
-        {
-          title: "Quality First",
-          desc: "We follow best practices to deliver reliable and high-quality solutions.",
-        },
-        {
-          title: "On-Time Delivery",
-          desc: "We respect deadlines and deliver your projects on time, every time.",
-        },
-        {
-          title: "Long-Term Partner",
-          desc: "We build lasting relationships and support your growth beyond delivery.",
-        },
-      ];
+  const pillars =
+    content.pillars && content.pillars.length > 0
+      ? content.pillars
+      : [
+          {
+            title: "Experienced Team",
+            desc: "Skilled professionals with years of experience in modern technologies.",
+          },
+          {
+            title: "Agile & Transparent",
+            desc: "We work in agile sprints and keep you updated at every step.",
+          },
+          {
+            title: "Quality First",
+            desc: "We follow best practices to deliver reliable and high-quality solutions.",
+          },
+          {
+            title: "On-Time Delivery",
+            desc: "We respect deadlines and deliver your projects on time, every time.",
+          },
+          {
+            title: "Long-Term Partner",
+            desc: "We build lasting relationships and support your growth beyond delivery.",
+          },
+        ];
 
   return (
     <section className="py-20 bg-white text-slate-900">

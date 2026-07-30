@@ -54,26 +54,27 @@ export default function WhyChooseUsSection() {
     return () => unsubscribe();
   }, []);
 
-  const pillars = content.pillars && content.pillars.length > 0
-    ? content.pillars
-    : [
-        {
-          title: "Client-Centric Approach",
-          desc: "We listen, collaborate and align our solutions with your business goals.",
-        },
-        {
-          title: "Transparent Process",
-          desc: "We follow clear communication and transparent processes at every step.",
-        },
-        {
-          title: "Agile & Scalable",
-          desc: "Our agile approach ensures flexibility, scalability and faster time-to-market.",
-        },
-        {
-          title: "Long-Term Partnership",
-          desc: "We build lasting relationships and support your growth beyond delivery.",
-        },
-      ];
+  const pillars =
+    content.pillars && content.pillars.length > 0
+      ? content.pillars
+      : [
+          {
+            title: "Client-Centric Approach",
+            desc: "We listen, collaborate and align our solutions with your business goals.",
+          },
+          {
+            title: "Transparent Process",
+            desc: "We follow clear communication and transparent processes at every step.",
+          },
+          {
+            title: "Agile & Scalable",
+            desc: "Our agile approach ensures flexibility, scalability and faster time-to-market.",
+          },
+          {
+            title: "Long-Term Partnership",
+            desc: "We build lasting relationships and support your growth beyond delivery.",
+          },
+        ];
 
   return (
     <section className="py-20 bg-white text-slate-900">

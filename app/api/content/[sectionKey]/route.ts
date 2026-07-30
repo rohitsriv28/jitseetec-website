@@ -10,7 +10,7 @@ import {
 // GET /api/content/[sectionKey] - Public API to get page section content
 export async function GET(
   req: Request,
-  { params }: { params: Promise<{ sectionKey: string }> }
+  { params }: { params: Promise<{ sectionKey: string }> },
 ) {
   try {
     await connectToDatabase();
@@ -21,11 +21,14 @@ export async function GET(
       return successResponse(
         null,
         `No custom content found for section '${sectionKey}'. Using default fallbacks.`,
-        200
+        200,
       );
     }
 
-    return successResponse(content.data, "Section content retrieved successfully");
+    return successResponse(
+      content.data,
+      "Section content retrieved successfully",
+    );
   } catch (error: any) {
     return errorResponse(error, 500, "Failed to retrieve section content");
   }
@@ -34,7 +37,7 @@ export async function GET(
 // PUT /api/content/[sectionKey] - Protected API to save page section content
 export async function PUT(
   req: Request,
-  { params }: { params: Promise<{ sectionKey: string }> }
+  { params }: { params: Promise<{ sectionKey: string }> },
 ) {
   try {
     const session = await getAdminSession(req);
@@ -49,12 +52,12 @@ export async function PUT(
     const updated = await SiteContent.findOneAndUpdate(
       { sectionKey },
       { sectionKey, data: body },
-      { upsert: true, new: true, runValidators: true }
+      { upsert: true, new: true, runValidators: true },
     ).lean();
 
     return successResponse(
       updated.data,
-      `Section '${sectionKey}' saved successfully!`
+      `Section '${sectionKey}' saved successfully!`,
     );
   } catch (error: any) {
     return errorResponse(error, 400, "Failed to save section content");

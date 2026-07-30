@@ -6,7 +6,15 @@ import { subscribeToCmsUpdate } from "@/lib/cmsBus";
 export default function BrandLogoStrip() {
   const [content, setContent] = useState<any>({
     heading: "TRUSTED BY BUSINESSES WORLDWIDE",
-    brands: ["NOVATECH", "MEDIFLOW", "EduSphere", "Finova", "Travelo", "HealthPlus", "Payrix"],
+    brands: [
+      "NOVATECH",
+      "MEDIFLOW",
+      "EduSphere",
+      "Finova",
+      "Travelo",
+      "HealthPlus",
+      "Payrix",
+    ],
   });
 
   const fetchContent = async () => {

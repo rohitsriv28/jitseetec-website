@@ -205,10 +205,12 @@ export const DEFAULT_BLOGS: BlogItem[] = [
 
 export async function fetchSectionContent<T = any>(
   sectionKey: string,
-  fallback: T
+  fallback: T,
 ): Promise<T> {
   try {
-    const res = await fetch(`/api/content/${sectionKey}`, { cache: "no-store" });
+    const res = await fetch(`/api/content/${sectionKey}`, {
+      cache: "no-store",
+    });
     if (!res.ok) return fallback;
     const json = await res.json();
     return json.data ? (json.data as T) : fallback;

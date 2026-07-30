@@ -2,13 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import {
-  Edit3,
-  Briefcase,
-  HelpCircle,
-  Code2,
-  ArrowRight,
-} from "lucide-react";
+import { Edit3, Briefcase, HelpCircle, Code2, ArrowRight } from "lucide-react";
 
 export default function CategoryExplorer() {
   const categories = [

@@ -23,7 +23,7 @@ let MONGODB_URI =
 
 if (MONGODB_URI.includes("mongodb://") && MONGODB_URI.includes("mongodb.net")) {
   const match = MONGODB_URI.match(
-    /^mongodb:\/\/([^:]+):([^@]+)@(?:[^\.]+\.)+([^\/]+)\/([^?]+)/
+    /^mongodb:\/\/([^:]+):([^@]+)@(?:[^\.]+\.)+([^\/]+)\/([^?]+)/,
   );
   if (match) {
     const [, user, pass, domain, dbName] = match;

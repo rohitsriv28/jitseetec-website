@@ -46,7 +46,10 @@ export default function LatestBlogPosts() {
   };
 
   return (
-    <section id="blog" className="py-20 bg-white text-slate-900 border-t border-slate-100">
+    <section
+      id="blog"
+      className="py-20 bg-white text-slate-900 border-t border-slate-100"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
@@ -70,7 +73,10 @@ export default function LatestBlogPosts() {
         {loading && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[...Array(4)].map((_, i) => (
-              <div key={i} className="bg-white border border-slate-200 rounded-3xl overflow-hidden animate-pulse">
+              <div
+                key={i}
+                className="bg-white border border-slate-200 rounded-3xl overflow-hidden animate-pulse"
+              >
                 <div className="h-44 bg-slate-200" />
                 <div className="p-5 space-y-2.5">
                   <div className="h-2 bg-slate-200 rounded w-1/3" />
@@ -86,7 +92,9 @@ export default function LatestBlogPosts() {
         {!loading && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {blogs.length === 0 ? (
-              <p className="col-span-4 text-center text-slate-400 text-sm py-16">No blog posts found.</p>
+              <p className="col-span-4 text-center text-slate-400 text-sm py-16">
+                No blog posts found.
+              </p>
             ) : (
               blogs.map((post, idx) => (
                 <div

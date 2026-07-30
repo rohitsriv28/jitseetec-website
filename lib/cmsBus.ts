@@ -8,7 +8,7 @@ export function notifyCmsUpdate(sectionKeyOrCollection?: string) {
     window.dispatchEvent(
       new CustomEvent("jitseetec_cms_update", {
         detail: { key: sectionKeyOrCollection },
-      })
+      }),
     );
 
     // 2. BroadcastChannel for cross-tab instant broadcast

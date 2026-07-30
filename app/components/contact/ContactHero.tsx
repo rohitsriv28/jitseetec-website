@@ -46,7 +46,9 @@ export default function ContactHero() {
             Home
           </Link>
           <ChevronRight className="w-3.5 h-3.5" />
-          <span className="text-[#2CCFD3]">{content.subtitle || "Contact"}</span>
+          <span className="text-[#2CCFD3]">
+            {content.subtitle || "Contact"}
+          </span>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">

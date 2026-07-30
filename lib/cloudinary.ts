@@ -12,14 +12,15 @@ export default cloudinary;
 
 /**
  * Uploads a Buffer (from Next.js FormData file upload) directly to Cloudinary.
+ * All uploads target the specific folder named "JitSeeTec".
  *
  * @param buffer - File contents buffer
- * @param folder - Destination folder name inside Cloudinary (default: "jitseetec")
+ * @param folder - Destination folder name inside Cloudinary (default: "JitSeeTec")
  * @returns Promise resolving to the uploaded Cloudinary secure URL and public_id
  */
 export async function uploadBufferToCloudinary(
   buffer: Buffer,
-  folder = "jitseetec",
+  folder = "JitSeeTec",
 ): Promise<{ url: string; public_id: string }> {
   return new Promise((resolve, reject) => {
     const uploadStream = cloudinary.uploader.upload_stream(

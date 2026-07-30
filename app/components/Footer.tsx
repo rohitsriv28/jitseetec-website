@@ -289,7 +289,8 @@ export default function Footer() {
                 <li className="flex items-start gap-2.5 text-slate-400">
                   <MapPin className="w-4 h-4 text-[#2CCFD3] shrink-0 mt-0.5" />
                   <span>
-                    {contactInfo.location || "Imadol, Lalitpur, Bagmati Province, Nepal"}
+                    {contactInfo.location ||
+                      "Imadol, Lalitpur, Bagmati Province, Nepal"}
                   </span>
                 </li>
                 <li className="flex items-center gap-2.5 text-slate-400">

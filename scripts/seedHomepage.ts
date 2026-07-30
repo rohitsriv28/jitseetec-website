@@ -22,7 +22,9 @@ let MONGODB_URI =
   process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/jitseetec";
 
 if (MONGODB_URI.includes("mongodb://") && MONGODB_URI.includes("mongodb.net")) {
-  const match = MONGODB_URI.match(/^mongodb:\/\/([^:]+):([^@]+)@(?:[^\.]+\.)+([^\/]+)\/([^?]+)/);
+  const match = MONGODB_URI.match(
+    /^mongodb:\/\/([^:]+):([^@]+)@(?:[^\.]+\.)+([^\/]+)\/([^?]+)/,
+  );
   if (match) {
     const [, user, pass, domain, dbName] = match;
     MONGODB_URI = `mongodb+srv://${encodeURIComponent(user)}:${encodeURIComponent(pass)}@${domain}/${dbName}?retryWrites=true&w=majority`;
@@ -45,7 +47,8 @@ async function seedHomepage() {
 
   const Stat = mongoose.models.Stat || (await import("../models/Stat")).default;
   const SiteContent =
-    mongoose.models.SiteContent || (await import("../models/SiteContent")).default;
+    mongoose.models.SiteContent ||
+    (await import("../models/SiteContent")).default;
 
   // 1. Seed Homepage Stats Counter Bar
   console.log("📊 Seeding Homepage Counter Statistics...");
@@ -60,8 +63,10 @@ async function seedHomepage() {
   console.log("✅ Homepage Stats seeded successfully.");
 
   // 2. Seed Homepage SiteContent Sections
-  console.log("🌐 Seeding Homepage Content Sections (home_hero, home_what_we_do, home_why)...");
-  
+  console.log(
+    "🌐 Seeding Homepage Content Sections (home_hero, home_what_we_do, home_why)...",
+  );
+
   const homeSections = [
     {
       sectionKey: "home_hero",
@@ -142,7 +147,7 @@ async function seedHomepage() {
     await SiteContent.findOneAndUpdate(
       { sectionKey: item.sectionKey },
       { data: item.data },
-      { upsert: true, new: true }
+      { upsert: true, new: true },
     );
   }
   console.log("✅ Homepage content sections seeded successfully.");

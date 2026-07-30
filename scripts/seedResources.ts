@@ -22,7 +22,9 @@ let MONGODB_URI =
   process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/jitseetec";
 
 if (MONGODB_URI.includes("mongodb://") && MONGODB_URI.includes("mongodb.net")) {
-  const match = MONGODB_URI.match(/^mongodb:\/\/([^:]+):([^@]+)@(?:[^\.]+\.)+([^\/]+)\/([^?]+)/);
+  const match = MONGODB_URI.match(
+    /^mongodb:\/\/([^:]+):([^@]+)@(?:[^\.]+\.)+([^\/]+)\/([^?]+)/,
+  );
   if (match) {
     const [, user, pass, domain, dbName] = match;
     MONGODB_URI = `mongodb+srv://${encodeURIComponent(user)}:${encodeURIComponent(pass)}@${domain}/${dbName}?retryWrites=true&w=majority`;
@@ -44,12 +46,9 @@ async function seedResources() {
   const SiteContent =
     mongoose.models.SiteContent ||
     (await import("../models/SiteContent")).default;
-  const Blog =
-    mongoose.models.Blog ||
-    (await import("../models/Blog")).default;
+  const Blog = mongoose.models.Blog || (await import("../models/Blog")).default;
   const CaseStudy =
-    mongoose.models.CaseStudy ||
-    (await import("../models/CaseStudy")).default;
+    mongoose.models.CaseStudy || (await import("../models/CaseStudy")).default;
 
   // ─── 1. Resources Hero ────────────────────────────────────────────────────
   console.log("\n📄 Seeding resources_hero...");
@@ -65,7 +64,7 @@ async function seedResources() {
         popularTags: ["Next.js", "React", "Cloud", "UI/UX", "DevOps"],
       },
     },
-    { upsert: true, returnDocument: "after" }
+    { upsert: true, returnDocument: "after" },
   );
   console.log("  ✅ resources_hero done.");
 
@@ -101,7 +100,7 @@ async function seedResources() {
         ],
       },
     },
-    { upsert: true, returnDocument: "after" }
+    { upsert: true, returnDocument: "after" },
   );
   console.log("  ✅ resources_faqs done.");
 
@@ -127,7 +126,7 @@ async function seedResources() {
         ],
       },
     },
-    { upsert: true, returnDocument: "after" }
+    { upsert: true, returnDocument: "after" },
   );
   console.log("  ✅ resources_tech_stack done.");
 
@@ -143,7 +142,7 @@ async function seedResources() {
         buttonLabel: "Start a Project",
       },
     },
-    { upsert: true, returnDocument: "after" }
+    { upsert: true, returnDocument: "after" },
   );
   console.log("  ✅ resources_cta done.");
 
@@ -156,8 +155,10 @@ async function seedResources() {
       slug: "top-10-web-development-trends-2024",
       category: "Web Development",
       coverImage: "/images/finova_dashboard.png",
-      excerpt: "Explore the latest trends shaping the future of web development.",
-      content: "Web development continues to evolve rapidly. From AI-assisted coding to edge computing and WebAssembly, 2024 brings exciting changes. Teams must adopt modern frameworks, prioritize performance, and embrace new architectural patterns to stay competitive.",
+      excerpt:
+        "Explore the latest trends shaping the future of web development.",
+      content:
+        "Web development continues to evolve rapidly. From AI-assisted coding to edge computing and WebAssembly, 2024 brings exciting changes. Teams must adopt modern frameworks, prioritize performance, and embrace new architectural patterns to stay competitive.",
       readTime: "6 min read",
       author: {
         name: "Rohit Srivastava",
@@ -174,8 +175,10 @@ async function seedResources() {
       slug: "why-cloud-migration-essential-business",
       category: "Cloud",
       coverImage: "/images/services_hero_3d.png",
-      excerpt: "Learn how cloud migration can improve agility, security, and reduce costs.",
-      content: "Moving to the cloud is no longer optional. Businesses that migrate can reduce infrastructure costs by up to 40%, improve disaster recovery, and scale on demand. AWS, Azure, and GCP offer enterprise-grade tools that make migration smoother than ever.",
+      excerpt:
+        "Learn how cloud migration can improve agility, security, and reduce costs.",
+      content:
+        "Moving to the cloud is no longer optional. Businesses that migrate can reduce infrastructure costs by up to 40%, improve disaster recovery, and scale on demand. AWS, Azure, and GCP offer enterprise-grade tools that make migration smoother than ever.",
       readTime: "7 min read",
       author: {
         name: "Mandip Shah",
@@ -192,8 +195,10 @@ async function seedResources() {
       slug: "cross-platform-vs-native-app-development",
       category: "Mobile Development",
       coverImage: "/images/mediflow_app.png",
-      excerpt: "A detailed comparison to help you choose the right approach for your app.",
-      content: "Flutter and React Native have closed the gap with native iOS and Android apps. For most business use cases, cross-platform is the right choice — faster time to market, lower cost, and single codebase. Native remains best for performance-critical or platform-specific features.",
+      excerpt:
+        "A detailed comparison to help you choose the right approach for your app.",
+      content:
+        "Flutter and React Native have closed the gap with native iOS and Android apps. For most business use cases, cross-platform is the right choice — faster time to market, lower cost, and single codebase. Native remains best for performance-critical or platform-specific features.",
       readTime: "5 min read",
       author: {
         name: "Aayush Gupta",
@@ -210,8 +215,10 @@ async function seedResources() {
       slug: "cicd-best-practices-faster-reliable-deployments",
       category: "DevOps",
       coverImage: "/images/shophub_platform.png",
-      excerpt: "Implement these DevOps practices to streamline your deployment pipeline.",
-      content: "A strong CI/CD pipeline reduces deployment failures by 80%. Key practices include automated testing at every stage, feature flags for safe rollouts, containerization with Docker, infrastructure as code with Terraform, and monitoring with tools like Datadog or Grafana.",
+      excerpt:
+        "Implement these DevOps practices to streamline your deployment pipeline.",
+      content:
+        "A strong CI/CD pipeline reduces deployment failures by 80%. Key practices include automated testing at every stage, feature flags for safe rollouts, containerization with Docker, infrastructure as code with Terraform, and monitoring with tools like Datadog or Grafana.",
       readTime: "4 min read",
       author: {
         name: "Deepak Karn",
@@ -226,11 +233,10 @@ async function seedResources() {
   ];
 
   for (const blog of blogs) {
-    await Blog.findOneAndUpdate(
-      { slug: blog.slug },
-      blog,
-      { upsert: true, returnDocument: "after" }
-    );
+    await Blog.findOneAndUpdate({ slug: blog.slug }, blog, {
+      upsert: true,
+      returnDocument: "after",
+    });
     console.log(`  ✅ Blog: ${blog.title}`);
   }
 
@@ -259,11 +265,29 @@ async function seedResources() {
         "Automated budget tracking and alerts",
         "Integrated reporting and export tools",
       ],
-      researchText: "We conducted stakeholder interviews and competitive analysis across 5 leading fintech platforms to identify key UX and feature gaps.",
-      strategyPoints: ["Agile 2-week sprints", "Design system first approach", "API-first architecture"],
-      designPoints: ["Dark mode financial dashboard", "Mobile-responsive layouts", "Data visualization with charts"],
-      devPoints: ["React + TypeScript frontend", "Node.js REST API backend", "MongoDB for flexible data models"],
-      keyFeatures: ["Real-time analytics", "Budget forecasting", "Automated PDF reports", "Multi-user roles"],
+      researchText:
+        "We conducted stakeholder interviews and competitive analysis across 5 leading fintech platforms to identify key UX and feature gaps.",
+      strategyPoints: [
+        "Agile 2-week sprints",
+        "Design system first approach",
+        "API-first architecture",
+      ],
+      designPoints: [
+        "Dark mode financial dashboard",
+        "Mobile-responsive layouts",
+        "Data visualization with charts",
+      ],
+      devPoints: [
+        "React + TypeScript frontend",
+        "Node.js REST API backend",
+        "MongoDB for flexible data models",
+      ],
+      keyFeatures: [
+        "Real-time analytics",
+        "Budget forecasting",
+        "Automated PDF reports",
+        "Multi-user roles",
+      ],
       techStack: [
         { name: "React", iconKey: "FaReact" },
         { name: "Node.js", iconKey: "FaNodeJs" },
@@ -280,18 +304,31 @@ async function seedResources() {
       ],
       beforeAfter: {
         beforeTitle: "Before (Manual Processes)",
-        beforePoints: ["Excel-based reporting", "Manual data entry", "Delayed financial insights"],
+        beforePoints: [
+          "Excel-based reporting",
+          "Manual data entry",
+          "Delayed financial insights",
+        ],
         afterTitle: "After (Finova Platform)",
-        afterPoints: ["Real-time dashboards", "Automated reporting", "Instant financial insights"],
+        afterPoints: [
+          "Real-time dashboards",
+          "Automated reporting",
+          "Instant financial insights",
+        ],
       },
-      resultsText: "Finova reduced manual reporting time by 60% and improved team productivity across finance operations.",
+      resultsText:
+        "Finova reduced manual reporting time by 60% and improved team productivity across finance operations.",
       testimonial: {
-        quote: "JitSeeTec delivered an exceptional product that exceeded our expectations.",
+        quote:
+          "JitSeeTec delivered an exceptional product that exceeded our expectations.",
         author: "Rohit Sharma",
         role: "CEO, Finova",
         avatar: "",
       },
-      lessonsLearned: ["Early stakeholder alignment saves rework", "Performance budgets must be defined upfront"],
+      lessonsLearned: [
+        "Early stakeholder alignment saves rework",
+        "Performance budgets must be defined upfront",
+      ],
       status: "published",
     },
     {
@@ -315,11 +352,29 @@ async function seedResources() {
         "Seamless appointment booking flow",
         "Integrated e-prescription system",
       ],
-      researchText: "Patient journey mapping revealed 3 key friction points in existing telehealth solutions we resolved in our design.",
-      strategyPoints: ["Security-first architecture", "Offline-first mobile design", "Iterative usability testing"],
-      designPoints: ["Calming healthcare color palette", "One-tap appointment booking", "Video call UI with minimal distractions"],
-      devPoints: ["Flutter cross-platform app", "Firebase real-time backend", "WebRTC for video calls"],
-      keyFeatures: ["Video consultations", "Appointment management", "E-prescriptions", "Medical history records"],
+      researchText:
+        "Patient journey mapping revealed 3 key friction points in existing telehealth solutions we resolved in our design.",
+      strategyPoints: [
+        "Security-first architecture",
+        "Offline-first mobile design",
+        "Iterative usability testing",
+      ],
+      designPoints: [
+        "Calming healthcare color palette",
+        "One-tap appointment booking",
+        "Video call UI with minimal distractions",
+      ],
+      devPoints: [
+        "Flutter cross-platform app",
+        "Firebase real-time backend",
+        "WebRTC for video calls",
+      ],
+      keyFeatures: [
+        "Video consultations",
+        "Appointment management",
+        "E-prescriptions",
+        "Medical history records",
+      ],
       techStack: [
         { name: "Flutter", iconKey: "SiFlutter" },
         { name: "Firebase", iconKey: "SiFirebase" },
@@ -336,18 +391,30 @@ async function seedResources() {
       ],
       beforeAfter: {
         beforeTitle: "Before (Phone-only Booking)",
-        beforePoints: ["Long hold times", "Paper prescriptions", "No appointment reminders"],
+        beforePoints: [
+          "Long hold times",
+          "Paper prescriptions",
+          "No appointment reminders",
+        ],
         afterTitle: "After (MediFlow App)",
-        afterPoints: ["Instant online booking", "Digital e-prescriptions", "Automated SMS reminders"],
+        afterPoints: [
+          "Instant online booking",
+          "Digital e-prescriptions",
+          "Automated SMS reminders",
+        ],
       },
-      resultsText: "MediFlow achieved 70% increase in appointment bookings and 4.8★ rating within 3 months of launch.",
+      resultsText:
+        "MediFlow achieved 70% increase in appointment bookings and 4.8★ rating within 3 months of launch.",
       testimonial: {
         quote: "The communication and project management were outstanding.",
         author: "Priya Nair",
         role: "Product Manager, MediFlow",
         avatar: "",
       },
-      lessonsLearned: ["Healthcare compliance needs dedicated QA sprints", "Onboarding flow is critical for medical apps"],
+      lessonsLearned: [
+        "Healthcare compliance needs dedicated QA sprints",
+        "Onboarding flow is critical for medical apps",
+      ],
       status: "published",
     },
     {
@@ -371,11 +438,29 @@ async function seedResources() {
         "Multi-gateway secure payment processing",
         "Real-time inventory and order management",
       ],
-      researchText: "Cart abandonment analysis showed 68% drop-off at checkout — we redesigned the entire checkout funnel.",
-      strategyPoints: ["Conversion-focused design", "Performance optimization (Core Web Vitals)", "Headless commerce architecture"],
-      designPoints: ["Clean product discovery UI", "One-page checkout", "Mobile-first shopping experience"],
-      devPoints: ["Next.js for SSR/ISR", "Stripe + Razorpay integration", "Redis caching for performance"],
-      keyFeatures: ["AI recommendation engine", "Multi-currency support", "Smart search", "Admin analytics dashboard"],
+      researchText:
+        "Cart abandonment analysis showed 68% drop-off at checkout — we redesigned the entire checkout funnel.",
+      strategyPoints: [
+        "Conversion-focused design",
+        "Performance optimization (Core Web Vitals)",
+        "Headless commerce architecture",
+      ],
+      designPoints: [
+        "Clean product discovery UI",
+        "One-page checkout",
+        "Mobile-first shopping experience",
+      ],
+      devPoints: [
+        "Next.js for SSR/ISR",
+        "Stripe + Razorpay integration",
+        "Redis caching for performance",
+      ],
+      keyFeatures: [
+        "AI recommendation engine",
+        "Multi-currency support",
+        "Smart search",
+        "Admin analytics dashboard",
+      ],
       techStack: [
         { name: "Next.js", iconKey: "SiNextdotjs" },
         { name: "Tailwind CSS", iconKey: "SiTailwindcss" },
@@ -388,32 +473,47 @@ async function seedResources() {
         { step: "QA & Launch", time: "Week 23–24" },
       ],
       screenshots: [
-        { title: "Homepage & Product Listing", img: "/images/shophub_platform.png" },
+        {
+          title: "Homepage & Product Listing",
+          img: "/images/shophub_platform.png",
+        },
       ],
       beforeAfter: {
         beforeTitle: "Before (Legacy Platform)",
-        beforePoints: ["High cart abandonment", "No personalization", "Slow page loads"],
+        beforePoints: [
+          "High cart abandonment",
+          "No personalization",
+          "Slow page loads",
+        ],
         afterTitle: "After (ShopHub)",
-        afterPoints: ["Streamlined checkout", "AI-personalized feeds", "Sub-2s load times"],
+        afterPoints: [
+          "Streamlined checkout",
+          "AI-personalized feeds",
+          "Sub-2s load times",
+        ],
       },
-      resultsText: "ShopHub saw 35% increase in conversions and 25% higher average order value within 60 days of launch.",
+      resultsText:
+        "ShopHub saw 35% increase in conversions and 25% higher average order value within 60 days of launch.",
       testimonial: {
-        quote: "Our e-commerce platform saw a 40% increase in conversions after launch. Great team, great results!",
+        quote:
+          "Our e-commerce platform saw a 40% increase in conversions after launch. Great team, great results!",
         author: "James Carter",
         role: "Founder, ShopHub",
         avatar: "",
       },
-      lessonsLearned: ["Payment UX is as important as payment security", "A/B testing checkout flow doubled conversions"],
+      lessonsLearned: [
+        "Payment UX is as important as payment security",
+        "A/B testing checkout flow doubled conversions",
+      ],
       status: "published",
     },
   ];
 
   for (const cs of caseStudies) {
-    await CaseStudy.findOneAndUpdate(
-      { slug: cs.slug },
-      cs,
-      { upsert: true, returnDocument: "after" }
-    );
+    await CaseStudy.findOneAndUpdate({ slug: cs.slug }, cs, {
+      upsert: true,
+      returnDocument: "after",
+    });
     console.log(`  ✅ Case Study: ${cs.title}`);
   }
 

@@ -18,12 +18,42 @@ export default function DevelopmentProcess() {
     heading: "A Collaborative Process That Delivers Results",
     subtitle: "OUR PROCESS",
     steps: [
-      { step: "01", stepNumber: 1, title: "Discover", desc: "We understand your business, goals and challenges." },
-      { step: "02", stepNumber: 2, title: "Plan", desc: "We define the strategy, roadmap and technical approach." },
-      { step: "03", stepNumber: 3, title: "Design", desc: "We create intuitive designs that users love." },
-      { step: "04", stepNumber: 4, title: "Develop", desc: "We build robust, scalable and secure solutions." },
-      { step: "05", stepNumber: 5, title: "Deliver", desc: "We test, deploy and deliver great software on time." },
-      { step: "06", stepNumber: 6, title: "Support", desc: "We provide ongoing support and continuous improvement." },
+      {
+        step: "01",
+        stepNumber: 1,
+        title: "Discover",
+        desc: "We understand your business, goals and challenges.",
+      },
+      {
+        step: "02",
+        stepNumber: 2,
+        title: "Plan",
+        desc: "We define the strategy, roadmap and technical approach.",
+      },
+      {
+        step: "03",
+        stepNumber: 3,
+        title: "Design",
+        desc: "We create intuitive designs that users love.",
+      },
+      {
+        step: "04",
+        stepNumber: 4,
+        title: "Develop",
+        desc: "We build robust, scalable and secure solutions.",
+      },
+      {
+        step: "05",
+        stepNumber: 5,
+        title: "Deliver",
+        desc: "We test, deploy and deliver great software on time.",
+      },
+      {
+        step: "06",
+        stepNumber: 6,
+        title: "Support",
+        desc: "We provide ongoing support and continuous improvement.",
+      },
     ],
   });
 
@@ -49,16 +79,41 @@ export default function DevelopmentProcess() {
     return () => unsubscribe();
   }, []);
 
-  const steps = content.steps && content.steps.length > 0
-    ? content.steps
-    : [
-        { step: "01", title: "Discover", desc: "We understand your business, goals and challenges." },
-        { step: "02", title: "Plan", desc: "We define the strategy, roadmap and technical approach." },
-        { step: "03", title: "Design", desc: "We create intuitive designs that users love." },
-        { step: "04", title: "Develop", desc: "We build robust, scalable and secure solutions." },
-        { step: "05", title: "Deliver", desc: "We test, deploy and deliver great software on time." },
-        { step: "06", title: "Support", desc: "We provide ongoing support and continuous improvement." },
-      ];
+  const steps =
+    content.steps && content.steps.length > 0
+      ? content.steps
+      : [
+          {
+            step: "01",
+            title: "Discover",
+            desc: "We understand your business, goals and challenges.",
+          },
+          {
+            step: "02",
+            title: "Plan",
+            desc: "We define the strategy, roadmap and technical approach.",
+          },
+          {
+            step: "03",
+            title: "Design",
+            desc: "We create intuitive designs that users love.",
+          },
+          {
+            step: "04",
+            title: "Develop",
+            desc: "We build robust, scalable and secure solutions.",
+          },
+          {
+            step: "05",
+            title: "Deliver",
+            desc: "We test, deploy and deliver great software on time.",
+          },
+          {
+            step: "06",
+            title: "Support",
+            desc: "We provide ongoing support and continuous improvement.",
+          },
+        ];
 
   return (
     <section className="py-20 bg-[#EEF4F8] text-slate-900">
@@ -80,7 +135,9 @@ export default function DevelopmentProcess() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 relative z-10">
             {steps.map((proc: any, idx: number) => {
               const ProcessIcon = defaultIcons[idx % defaultIcons.length];
-              const stepLabel = proc.step || (proc.stepNumber ? `0${proc.stepNumber}` : `0${idx + 1}`);
+              const stepLabel =
+                proc.step ||
+                (proc.stepNumber ? `0${proc.stepNumber}` : `0${idx + 1}`);
 
               return (
                 <div key={idx} className="group flex flex-col items-center">

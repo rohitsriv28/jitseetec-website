@@ -58,7 +58,10 @@ export default function FeaturedCaseStudies() {
         {loading && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[...Array(3)].map((_, i) => (
-              <div key={i} className="bg-white border border-slate-200 rounded-3xl overflow-hidden animate-pulse">
+              <div
+                key={i}
+                className="bg-white border border-slate-200 rounded-3xl overflow-hidden animate-pulse"
+              >
                 <div className="h-48 bg-slate-200" />
                 <div className="p-6 space-y-3">
                   <div className="h-4 bg-slate-200 rounded w-3/4" />
@@ -78,7 +81,9 @@ export default function FeaturedCaseStudies() {
         {!loading && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {caseStudies.length === 0 ? (
-              <p className="col-span-3 text-center text-slate-400 text-sm py-16">No case studies found.</p>
+              <p className="col-span-3 text-center text-slate-400 text-sm py-16">
+                No case studies found.
+              </p>
             ) : (
               caseStudies.map((cs, idx) => (
                 <div
@@ -103,15 +108,23 @@ export default function FeaturedCaseStudies() {
                         {cs.title}
                       </h3>
                       <p className="text-xs text-slate-600 leading-relaxed">
-                        {cs.challenge?.slice(0, 120)}{cs.challenge?.length > 120 ? "…" : ""}
+                        {cs.challenge?.slice(0, 120)}
+                        {cs.challenge?.length > 120 ? "…" : ""}
                       </p>
 
                       {cs.metrics && cs.metrics.length > 0 && (
                         <div className="grid grid-cols-3 gap-2 pt-3 border-t border-slate-100 text-center">
                           {cs.metrics.slice(0, 3).map((m: any, i: number) => (
-                            <div key={i} className="bg-[#F7F9FB] rounded-xl p-2">
-                              <div className="text-sm font-extrabold text-[#0E7C86] font-heading">{m.val}</div>
-                              <div className="text-[9px] text-slate-500 font-medium">{m.label}</div>
+                            <div
+                              key={i}
+                              className="bg-[#F7F9FB] rounded-xl p-2"
+                            >
+                              <div className="text-sm font-extrabold text-[#0E7C86] font-heading">
+                                {m.val}
+                              </div>
+                              <div className="text-[9px] text-slate-500 font-medium">
+                                {m.label}
+                              </div>
                             </div>
                           ))}
                         </div>

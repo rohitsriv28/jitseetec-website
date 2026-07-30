@@ -34,7 +34,10 @@ export async function PUT(req: Request) {
     if (email.toLowerCase() !== user.email.toLowerCase()) {
       const existing = await User.findOne({ email: email.toLowerCase() });
       if (existing) {
-        return errorResponse("Email address is already used by another account", 400);
+        return errorResponse(
+          "Email address is already used by another account",
+          400,
+        );
       }
     }
 
@@ -56,7 +59,7 @@ export async function PUT(req: Request) {
           avatar: user.avatar,
         },
       },
-      "Admin settings updated successfully"
+      "Admin settings updated successfully",
     );
   } catch (err: any) {
     console.error("Error updating admin profile:", err);

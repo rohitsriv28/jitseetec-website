@@ -86,7 +86,10 @@ export default function TechStackSection() {
         {loading && (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
             {[...Array(10)].map((_, i) => (
-              <div key={i} className="bg-[#F7F9FB] border border-slate-200 rounded-2xl p-6 animate-pulse flex flex-col items-center gap-3">
+              <div
+                key={i}
+                className="bg-[#F7F9FB] border border-slate-200 rounded-2xl p-6 animate-pulse flex flex-col items-center gap-3"
+              >
                 <div className="w-10 h-10 bg-slate-200 rounded-full" />
                 <div className="h-3 bg-slate-200 rounded w-16" />
               </div>
@@ -99,9 +102,7 @@ export default function TechStackSection() {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
             {techStack.map((tech, idx) => {
               const IconComponent = iconMap[tech.iconKey] || FaReact;
-              const colorStyle = tech.color
-                ? { color: tech.color }
-                : undefined;
+              const colorStyle = tech.color ? { color: tech.color } : undefined;
               return (
                 <div
                   key={idx}
@@ -111,7 +112,9 @@ export default function TechStackSection() {
                     style={colorStyle}
                     className="w-10 h-10 group-hover:scale-110 transition-transform duration-300"
                   />
-                  <span className="text-xs font-bold text-[#0B1623]">{tech.name}</span>
+                  <span className="text-xs font-bold text-[#0B1623]">
+                    {tech.name}
+                  </span>
                 </div>
               );
             })}

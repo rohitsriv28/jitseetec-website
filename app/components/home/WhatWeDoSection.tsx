@@ -71,35 +71,36 @@ export default function WhatWeDoSection() {
     return () => unsubscribe();
   }, []);
 
-  const services = content.servicesList && content.servicesList.length > 0
-    ? content.servicesList
-    : [
-        {
-          title: "Web Development",
-          desc: "We build fast, responsive and scalable web applications using modern technologies.",
-          link: "/services#web-dev",
-        },
-        {
-          title: "Mobile App Development",
-          desc: "Native and cross-platform mobile apps that deliver seamless user experiences.",
-          link: "/services#mobile-dev",
-        },
-        {
-          title: "UI/UX Design",
-          desc: "User-centered designs that are intuitive, engaging and aligned with your brand.",
-          link: "/services#uiux-design",
-        },
-        {
-          title: "Cloud & DevOps",
-          desc: "Scalable cloud solutions and DevOps practices to ensure reliability and performance.",
-          link: "/services#cloud-devops",
-        },
-        {
-          title: "Custom Software",
-          desc: "Robust software solutions tailored to your unique business requirements.",
-          link: "/services#custom-software",
-        },
-      ];
+  const services =
+    content.servicesList && content.servicesList.length > 0
+      ? content.servicesList
+      : [
+          {
+            title: "Web Development",
+            desc: "We build fast, responsive and scalable web applications using modern technologies.",
+            link: "/services#web-dev",
+          },
+          {
+            title: "Mobile App Development",
+            desc: "Native and cross-platform mobile apps that deliver seamless user experiences.",
+            link: "/services#mobile-dev",
+          },
+          {
+            title: "UI/UX Design",
+            desc: "User-centered designs that are intuitive, engaging and aligned with your brand.",
+            link: "/services#uiux-design",
+          },
+          {
+            title: "Cloud & DevOps",
+            desc: "Scalable cloud solutions and DevOps practices to ensure reliability and performance.",
+            link: "/services#cloud-devops",
+          },
+          {
+            title: "Custom Software",
+            desc: "Robust software solutions tailored to your unique business requirements.",
+            link: "/services#custom-software",
+          },
+        ];
 
   return (
     <section className="py-20 bg-white text-slate-900">
@@ -110,7 +111,8 @@ export default function WhatWeDoSection() {
               {content.subtitle || "WHAT WE DO"}
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-[#0B1623] mt-2">
-              {content.title || "End-to-End Digital Solutions Built for the Future"}
+              {content.title ||
+                "End-to-End Digital Solutions Built for the Future"}
             </h2>
             <p className="text-slate-600 text-sm max-w-xl mt-3">
               {content.description ||

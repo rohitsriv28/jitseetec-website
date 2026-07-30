@@ -12,7 +12,8 @@ const SiteContentSchema = new Schema<ISiteContent>(
     sectionKey: { type: String, required: true, unique: true, trim: true },
     data: { type: Schema.Types.Mixed, required: true, default: {} },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-export default models.SiteContent || model<ISiteContent>("SiteContent", SiteContentSchema);
+export default models.SiteContent ||
+  model<ISiteContent>("SiteContent", SiteContentSchema);

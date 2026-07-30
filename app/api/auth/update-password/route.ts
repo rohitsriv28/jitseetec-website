@@ -17,11 +17,17 @@ export async function PUT(req: Request) {
     const { currentPassword, newPassword } = await req.json();
 
     if (!currentPassword || !newPassword) {
-      return errorResponse("Both current password and new password are required", 400);
+      return errorResponse(
+        "Both current password and new password are required",
+        400,
+      );
     }
 
     if (newPassword.length < 6) {
-      return errorResponse("New password must be at least 6 characters long", 400);
+      return errorResponse(
+        "New password must be at least 6 characters long",
+        400,
+      );
     }
 
     await connectToDatabase();

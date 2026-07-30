@@ -60,7 +60,8 @@ export default function ServiceCards({
               {content.subtitle || "WHAT WE OFFER"}
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-[#0B1623] mt-2">
-              {content.title || "End-to-End Digital Solutions Tailored to Your Needs"}
+              {content.title ||
+                "End-to-End Digital Solutions Tailored to Your Needs"}
             </h2>
           </div>
           <div className="lg:col-span-5">
@@ -296,8 +297,8 @@ export default function ServiceCards({
                 Custom Software
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed mb-6">
-                Tailored software solutions engineered to solve complex
-                business challenges.
+                Tailored software solutions engineered to solve complex business
+                challenges.
               </p>
 
               <ul className="space-y-2.5 mb-8">

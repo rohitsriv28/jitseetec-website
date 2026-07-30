@@ -186,11 +186,17 @@ export default function ContactFormSection() {
                     >
                       <option value="">Select a service...</option>
                       <option value="Web Development">Web Development</option>
-                      <option value="Mobile App Development">Mobile App Development</option>
+                      <option value="Mobile App Development">
+                        Mobile App Development
+                      </option>
                       <option value="UI/UX Design">UI/UX Design</option>
                       <option value="Cloud & DevOps">Cloud & DevOps</option>
-                      <option value="Custom Software Development">Custom Software Development</option>
-                      <option value="Other / General Inquiry">Other / General Inquiry</option>
+                      <option value="Custom Software Development">
+                        Custom Software Development
+                      </option>
+                      <option value="Other / General Inquiry">
+                        Other / General Inquiry
+                      </option>
                     </select>
                     <ChevronDown className="w-4 h-4 text-slate-400 absolute right-4 top-3.5 pointer-events-none" />
                   </div>
@@ -228,7 +234,8 @@ export default function ContactFormSection() {
                     htmlFor="privacy-check"
                     className="text-xs text-slate-600 cursor-pointer"
                   >
-                    I agree to the processing of my personal data according to the{" "}
+                    I agree to the processing of my personal data according to
+                    the{" "}
                     <Link
                       href="/contact"
                       className="text-[#0E7C86] font-semibold underline hover:text-[#0B1623]"
@@ -257,7 +264,8 @@ export default function ContactFormSection() {
                   Thank You for Reaching Out!
                 </h3>
                 <p className="text-xs text-slate-600 max-w-md mx-auto leading-relaxed">
-                  We have received your message and our team will get back to you within 24 business hours.
+                  We have received your message and our team will get back to
+                  you within 24 business hours.
                 </p>
                 <button
                   onClick={() => {
@@ -303,7 +311,8 @@ export default function ContactFormSection() {
                       Location
                     </div>
                     <div className="text-xs text-slate-600 mt-0.5 leading-relaxed">
-                      {contactInfo.location || "Imadol, Lalitpur, Bagmati Province, Nepal"}
+                      {contactInfo.location ||
+                        "Imadol, Lalitpur, Bagmati Province, Nepal"}
                     </div>
                   </div>
                 </div>
@@ -354,7 +363,8 @@ export default function ContactFormSection() {
                       Business Hours
                     </div>
                     <div className="text-xs text-slate-600 mt-0.5 leading-relaxed">
-                      {contactInfo.hours || "Sunday - Friday: 9:00 AM - 6:00 PM (Nepal Time)"}
+                      {contactInfo.hours ||
+                        "Sunday - Friday: 9:00 AM - 6:00 PM (Nepal Time)"}
                     </div>
                   </div>
                 </div>

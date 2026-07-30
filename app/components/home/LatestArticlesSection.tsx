@@ -123,7 +123,14 @@ export default function LatestArticlesSection() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {testimonials.map((t, idx) => {
                   const authorName = t.author || t.name || "Client";
-                  const avatarText = t.avatar || (authorName ? authorName.split(" ").map((n: string) => n[0]).join("") : "CL");
+                  const avatarText =
+                    t.avatar ||
+                    (authorName
+                      ? authorName
+                          .split(" ")
+                          .map((n: string) => n[0])
+                          .join("")
+                      : "CL");
 
                   return (
                     <div
@@ -212,7 +219,13 @@ export default function LatestArticlesSection() {
                   </span>
                   <span className="text-[11px] text-slate-500 flex items-center gap-1 font-medium">
                     <Calendar className="w-3.5 h-3.5" />
-                    {article.date || (article.createdAt ? new Date(article.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "May 2024")}
+                    {article.date ||
+                      (article.createdAt
+                        ? new Date(article.createdAt).toLocaleDateString(
+                            "en-US",
+                            { month: "short", day: "numeric", year: "numeric" },
+                          )
+                        : "May 2024")}
                   </span>
                 </div>
                 <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
