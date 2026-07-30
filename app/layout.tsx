@@ -7,19 +7,47 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
 });
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://jitseetec-website.vercel.app",
+  ),
   title:
     "JitSeeTec Pvt. Ltd. | End-to-End Digital Solutions & Software Development",
   description:
     "JitSeeTec is a modern software development company dedicated to helping startups, SMEs, and enterprises transform ideas into scalable digital products.",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    title: "JitSeeTec Pvt. Ltd. | End-to-End Digital Solutions",
+    description:
+      "JitSeeTec is a modern software development company dedicated to helping startups, SMEs, and enterprises transform ideas into scalable digital products.",
+    url: "https://jitseetec-website.vercel.app",
+    siteName: "JitSeeTec",
+    locale: "en_US",
+    type: "website",
+  },
   icons: {
     icon: [
       { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },

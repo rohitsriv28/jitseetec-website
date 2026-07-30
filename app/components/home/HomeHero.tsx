@@ -121,6 +121,8 @@ export default function HomeHero({ onOpenConsultation }: HomeHeroProps) {
               alt="Digital Acceleration 3D Tech Illustration"
               width={600}
               height={450}
+              priority
+              sizes="(max-width: 768px) 100vw, 600px"
               className="w-full h-auto object-contain pointer-events-none"
             />
           </div>
