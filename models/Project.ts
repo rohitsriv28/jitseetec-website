@@ -6,7 +6,6 @@ export interface IProject extends Document {
     | "Web Development"
     | "Mobile Apps"
     | "UI/UX Design"
-    | "Cloud & DevOps"
     | "Custom Software";
   industry: string;
   image: string;
@@ -30,7 +29,6 @@ const ProjectSchema = new Schema<IProject>(
         "Web Development",
         "Mobile Apps",
         "UI/UX Design",
-        "Cloud & DevOps",
         "Custom Software",
       ],
       required: true,

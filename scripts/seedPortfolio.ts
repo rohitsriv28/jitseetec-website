@@ -175,7 +175,7 @@ async function seedPortfolio() {
     },
     {
       title: "TranspoTrack System",
-      category: "Cloud & DevOps",
+      category: "Custom Software",
       industry: "Logistics",
       desc: "Logistics and fleet management system with real-time tracking, route optimization, and maintenance management.",
       tags: ["Angular", ".NET Core", "SQL Server"],

@@ -11,7 +11,6 @@ import CategoryExplorer from "../components/resources/CategoryExplorer";
 import LatestBlogPosts from "../components/resources/LatestBlogPosts";
 import FeaturedCaseStudies from "../components/resources/FeaturedCaseStudies";
 import InteractiveFaq from "../components/resources/InteractiveFaq";
-import TechStackSection from "../components/resources/TechStackSection";
 import ResourcesCta from "../components/resources/ResourcesCta";
 
 export default function ResourcesPage() {
@@ -37,9 +36,6 @@ export default function ResourcesPage() {
 
         {/* Interactive FAQ Accordion */}
         <InteractiveFaq />
-
-        {/* Technology Stack Grid */}
-        <TechStackSection />
 
         {/* Resources Conversion CTA */}
         <ResourcesCta onOpenConsultation={() => setConsultationOpen(true)} />

@@ -8,7 +8,7 @@ import ConsultationModal from "./components/ConsultationModal";
 // Modular Home Section Components
 import HomeHero from "./components/home/HomeHero";
 import WhatWeDoSection from "./components/home/WhatWeDoSection";
-import StatsCounterBar from "./components/home/StatsCounterBar";
+import TechMarqueeBar from "./components/home/TechMarqueeBar";
 import FeaturedWorkSection from "./components/home/FeaturedWorkSection";
 import WhyChooseUsSection from "./components/home/WhyChooseUsSection";
 import LatestArticlesSection from "./components/home/LatestArticlesSection";
@@ -29,8 +29,8 @@ export default function Home() {
         {/* What We Do Services Section */}
         <WhatWeDoSection />
 
-        {/* Stats Counter Bar */}
-        <StatsCounterBar />
+        {/* Tech Stack & E-Commerce Marquee Bar */}
+        <TechMarqueeBar />
 
         {/* Featured Work Showcase */}
         <FeaturedWorkSection />

@@ -248,7 +248,7 @@ async function seed() {
     },
     {
       title: "TranspoTrack System",
-      category: "Cloud & DevOps",
+      category: "Custom Software",
       industry: "Logistics",
       image: "/images/transpotrack.png",
       desc: "Seamless fleet and logistics management plan with real-time tracking, driver assignment, and maintenance management system.",
@@ -302,6 +302,28 @@ async function seed() {
       avatar: "JC",
       rating: 5,
       order: 3,
+      featured: true,
+    },
+    {
+      author: "Ananya Singh",
+      role: "CTO, EduSphere",
+      company: "EduSphere",
+      quote:
+        "Working with JitSeeTec was a seamless experience. They built a robust LMS that handles thousands of concurrent learners without a hitch.",
+      avatar: "AS",
+      rating: 5,
+      order: 4,
+      featured: true,
+    },
+    {
+      author: "Lucas Fernandez",
+      role: "Operations Head, TranspoTrack",
+      company: "TranspoTrack",
+      quote:
+        "The fleet tracking system they built reduced our operational costs by 30%. Highly recommend their engineering team.",
+      avatar: "LF",
+      rating: 5,
+      order: 5,
       featured: true,
     },
   ];
@@ -615,7 +637,7 @@ async function seed() {
       sectionKey: "home_what_we_do",
       data: {
         subtitle: "WHAT WE DO",
-        title: "End-to-End Digital Solutions Built for the Future",
+        title: "End-to-End Digital Solutions",
         description:
           "From ideation to deployment, we deliver tailored solutions that drive efficiency, growth and long-term success.",
         servicesList: [
@@ -633,11 +655,6 @@ async function seed() {
             title: "UI/UX Design",
             desc: "User-centered designs that are intuitive, engaging and aligned with your brand.",
             link: "/services#uiux-design",
-          },
-          {
-            title: "Cloud & DevOps",
-            desc: "Scalable cloud solutions and DevOps practices to ensure reliability and performance.",
-            link: "/services#cloud-devops",
           },
           {
             title: "Custom Software",

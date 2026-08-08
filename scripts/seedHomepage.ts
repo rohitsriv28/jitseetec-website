@@ -82,7 +82,7 @@ async function seedHomepage() {
       sectionKey: "home_what_we_do",
       data: {
         subtitle: "WHAT WE DO",
-        title: "End-to-End Digital Solutions Built for the Future",
+        title: "End-to-End Digital Solutions",
         description:
           "From ideation to deployment, we deliver tailored solutions that drive efficiency, growth and long-term success.",
         servicesList: [
@@ -100,11 +100,6 @@ async function seedHomepage() {
             title: "UI/UX Design",
             desc: "User-centered designs that are intuitive, engaging and aligned with your brand.",
             link: "/services#uiux-design",
-          },
-          {
-            title: "Cloud & DevOps",
-            desc: "Scalable cloud solutions and DevOps practices to ensure reliability and performance.",
-            link: "/services#cloud-devops",
           },
           {
             title: "Custom Software",

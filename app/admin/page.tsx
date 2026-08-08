@@ -2610,7 +2610,6 @@ export default function JitSeeTecAdminPage() {
                       className="w-full px-4 py-3 bg-[#0B1623] border border-slate-700 rounded-xl text-white focus:outline-none focus:border-[#2CCFD3]"
                     >
                       <option value="Web Development">Web Development</option>
-                      <option value="Cloud & DevOps">Cloud & DevOps</option>
                       <option value="UI/UX Design">UI/UX Design</option>
                       <option value="Engineering">Engineering</option>
                     </select>
@@ -2720,7 +2719,6 @@ export default function JitSeeTecAdminPage() {
                       <option value="Web Development">Web Development</option>
                       <option value="Mobile Apps">Mobile Apps</option>
                       <option value="UI/UX Design">UI/UX Design</option>
-                      <option value="Cloud & DevOps">Cloud & DevOps</option>
                       <option value="Custom Software">Custom Software</option>
                     </select>
                   </div>

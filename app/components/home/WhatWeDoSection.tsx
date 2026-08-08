@@ -6,18 +6,17 @@ import {
   Code2,
   Smartphone,
   Layout,
-  Cloud,
   Terminal,
   ArrowRight,
 } from "lucide-react";
 import { subscribeToCmsUpdate } from "@/lib/cmsBus";
 
-const defaultIcons = [Code2, Smartphone, Layout, Cloud, Terminal];
+const defaultIcons = [Code2, Smartphone, Layout, Terminal];
 
 export default function WhatWeDoSection() {
   const [content, setContent] = useState<any>({
     subtitle: "WHAT WE DO",
-    title: "End-to-End Digital Solutions Built for the Future",
+    title: "End-to-End Digital Solutions",
     description:
       "From ideation to deployment, we deliver tailored solutions that drive efficiency, growth and long-term success.",
     servicesList: [
@@ -35,11 +34,6 @@ export default function WhatWeDoSection() {
         title: "UI/UX Design",
         desc: "User-centered designs that are intuitive, engaging and aligned with your brand.",
         link: "/services#uiux-design",
-      },
-      {
-        title: "Cloud & DevOps",
-        desc: "Scalable cloud solutions and DevOps practices to ensure reliability and performance.",
-        link: "/services#cloud-devops",
       },
       {
         title: "Custom Software",
@@ -91,11 +85,6 @@ export default function WhatWeDoSection() {
             link: "/services#uiux-design",
           },
           {
-            title: "Cloud & DevOps",
-            desc: "Scalable cloud solutions and DevOps practices to ensure reliability and performance.",
-            link: "/services#cloud-devops",
-          },
-          {
             title: "Custom Software",
             desc: "Robust software solutions tailored to your unique business requirements.",
             link: "/services#custom-software",
@@ -111,8 +100,7 @@ export default function WhatWeDoSection() {
               {content.subtitle || "WHAT WE DO"}
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-[#0B1623] mt-2">
-              {content.title ||
-                "End-to-End Digital Solutions Built for the Future"}
+              {content.title || "End-to-End Digital Solutions"}
             </h2>
             <p className="text-slate-600 text-sm max-w-xl mt-3">
               {content.description ||
@@ -130,7 +118,7 @@ export default function WhatWeDoSection() {
         </div>
 
         {/* Dynamic Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service: any, idx: number) => {
             const IconComp = defaultIcons[idx % defaultIcons.length];
             return (

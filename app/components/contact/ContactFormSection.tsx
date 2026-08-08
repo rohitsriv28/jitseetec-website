@@ -190,7 +190,6 @@ export default function ContactFormSection() {
                         Mobile App Development
                       </option>
                       <option value="UI/UX Design">UI/UX Design</option>
-                      <option value="Cloud & DevOps">Cloud & DevOps</option>
                       <option value="Custom Software Development">
                         Custom Software Development
                       </option>

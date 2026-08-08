@@ -136,16 +136,6 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
                     </Link>
 
                     <Link
-                      href="/services#cloud-devops"
-                      className="flex items-center gap-3 p-2 rounded-xl hover:bg-[#0E7C86]/20 text-slate-300 hover:text-white transition-colors group"
-                    >
-                      <Cloud className="w-4 h-4 text-[#2CCFD3] group-hover:scale-110 transition-transform" />
-                      <span className="text-xs font-semibold">
-                        Cloud & DevOps
-                      </span>
-                    </Link>
-
-                    <Link
                       href="/services#api-dev"
                       className="flex items-center gap-3 p-2 rounded-xl hover:bg-[#0E7C86]/20 text-slate-300 hover:text-white transition-colors group"
                     >

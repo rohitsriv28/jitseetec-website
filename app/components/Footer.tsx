@@ -197,14 +197,6 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="/services#cloud-devops"
-                    className="hover:text-[#2CCFD3] transition-colors"
-                  >
-                    Cloud
-                  </Link>
-                </li>
-                <li>
-                  <Link
                     href="/services#uiux-design"
                     className="hover:text-[#2CCFD3] transition-colors"
                   >
@@ -213,10 +205,10 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="/services#cloud-devops"
+                    href="/services#custom-software"
                     className="hover:text-[#2CCFD3] transition-colors"
                   >
-                    DevOps
+                    Custom Software
                   </Link>
                 </li>
               </ul>

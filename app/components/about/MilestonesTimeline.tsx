@@ -62,42 +62,46 @@ export default function MilestonesTimeline() {
   const milestones = content.milestones || [];
 
   return (
-    <section className="py-20 bg-[#EEF4F8] text-slate-900">
+    <section className="py-16 sm:py-20 bg-[#EEF4F8] text-slate-900 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-16 text-center sm:text-left">
+        <div className="mb-12 sm:mb-16 text-center sm:text-left">
           <span className="text-[#0E7C86] text-xs font-bold tracking-wider uppercase font-heading">
             {content.subtitle || "OUR JOURNEY"}
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-[#0B1623] mt-2">
+          <h2 className="text-2xl sm:text-4xl font-extrabold font-heading text-[#0B1623] mt-1.5">
             {content.title || "Milestones That Define Our Growth"}
           </h2>
         </div>
 
         <div className="relative">
-          {/* Dashed connector line */}
-          <div className="hidden lg:block absolute top-7 left-[10%] right-[10%] h-0.5 border-t-2 border-dashed border-slate-300 z-0" />
+          {/* Desktop Only Horizontal Connecting Line */}
+          <div className="hidden lg:block absolute top-7 left-[10%] right-[10%] h-0.5 border-t-2 border-dashed border-[#0E7C86]/50 z-0 pointer-events-none" />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 relative z-10">
+          {/* Timeline Grid — 2 columns on mobile, 3 on tablet, 5 on desktop */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-8 gap-x-4 sm:gap-6 relative z-10">
             {milestones.map((m: any, i: number) => {
               const IconComp = defaultIcons[i % defaultIcons.length];
+
               return (
-                <div key={i} className="group flex flex-col items-center">
+                <div key={i} className="group flex flex-col items-center relative">
                   {/* Icon Circle Node */}
-                  <div className="w-14 h-14 rounded-full bg-white text-[#0E7C86] border-2 border-slate-200 flex items-center justify-center mb-6 shadow-md z-10 transition-all duration-300 group-hover:bg-[#0E7C86] group-hover:text-white group-hover:border-[#2CCFD3] group-hover:scale-105 group-hover:shadow-[0_0_12px_rgba(44,207,211,0.35)]">
-                    <IconComp className="w-6 h-6 transition-transform duration-300 group-hover:scale-110" />
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white text-[#0E7C86] border-2 border-slate-200 flex items-center justify-center mb-4 sm:mb-6 shadow-md z-10 transition-all duration-300 group-hover:bg-[#0E7C86] group-hover:text-white group-hover:border-[#2CCFD3] group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(14,124,134,0.35)]">
+                    <IconComp className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:scale-110" />
                   </div>
 
                   {/* Milestone Content Card */}
-                  <div className="w-full bg-[#F7F9FB] border border-slate-200 rounded-2xl p-5 text-center transition-all duration-300 shadow-sm group-hover:border-[#0E7C86] group-hover:shadow-lg group-hover:-translate-y-1 flex-1">
-                    <div className="text-xs font-bold text-[#0E7C86] font-mono mb-1">
-                      {m.year}
+                  <div className="w-full bg-[#F7F9FB] border border-slate-200 rounded-2xl p-4 sm:p-5 text-center transition-all duration-300 shadow-sm group-hover:border-[#0E7C86] group-hover:shadow-lg group-hover:-translate-y-1 flex-1 flex flex-col justify-between">
+                    <div>
+                      <div className="text-xs font-extrabold text-[#0E7C86] font-mono mb-1">
+                        {m.year}
+                      </div>
+                      <h3 className="text-xs sm:text-sm font-bold font-heading text-[#0B1623] mb-1.5 leading-snug">
+                        {m.title}
+                      </h3>
+                      <p className="text-[11px] text-slate-600 leading-relaxed">
+                        {m.desc}
+                      </p>
                     </div>
-                    <h3 className="text-sm font-bold font-heading text-[#0B1623] mb-2">
-                      {m.title}
-                    </h3>
-                    <p className="text-[11px] text-slate-600 leading-relaxed">
-                      {m.desc}
-                    </p>
                   </div>
                 </div>
               );

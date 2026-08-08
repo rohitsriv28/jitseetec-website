@@ -43,7 +43,6 @@ export default function BlogSidebar() {
   const categories = [
     { name: "Web Development", count: 18 },
     { name: "Mobile Development", count: 14 },
-    { name: "Cloud & DevOps", count: 10 },
     { name: "UI/UX Design", count: 8 },
     { name: "Business & Strategy", count: 6 },
   ];

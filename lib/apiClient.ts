@@ -70,7 +70,7 @@ export interface ProjectItem {
     | "Web Development"
     | "Mobile Apps"
     | "UI/UX Design"
-    | "Cloud & DevOps";
+    | "Custom Software";
   industry: string;
   image: string;
   desc: string;
@@ -182,7 +182,7 @@ export const DEFAULT_BLOGS: BlogItem[] = [
   {
     title: "Cloud-Native Architecture: Why It Matters",
     slug: "cloud-native-architecture-why-it-matters",
-    category: "Cloud & DevOps",
+    category: "Web Development",
     coverImage: "/images/services_hero_3d.png",
     excerpt:
       "Explore how cloud-native principles enable scalable, resilient software systems.",
